@@ -4,6 +4,7 @@ namespace Drupal\islandora_whole_object\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Access\AccessResult;
 
 /**
 * Controller.
@@ -30,5 +31,12 @@ class IslandoraWholeObjectController extends ControllerBase {
      return [
        '#markup' => ''
      ];
+   }
+
+   /**
+    * Only show out tab on nodes with the 'islandora_object' content type.
+    */
+   public function islandoraContentTypeOnly(NodeInterface $node = NULL) {
+     return ($node->getType() == 'islandora_object') ? AccessResult::allowed() : AccessResult::forbidden();
    }
 }

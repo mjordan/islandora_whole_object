@@ -7,3 +7,4 @@ islandora_whole_object.whole_object:
   requirements:
     _permission: 'administer site configuration'
     node: \d+
+    _custom_access: '\Drupal\islandora_whole_object\Controller\IslandoraWholeObjectController::islandoraContentTypeOnly'

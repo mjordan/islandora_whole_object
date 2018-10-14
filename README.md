@@ -28,7 +28,7 @@ You will then see the JSON-LD for the specified object.
 
 ## To do
 
-* Make the tab appear only on nodes with the 'islandora_object' content type; make the content type configurable
+* Make the content types this tab show on configurable (currently it only shows on nodes of type 'islandora_object')
 * Format the content so it's more useful, andby remove our dependency on Devel
 * Add more than just the JSON-LD (e.g., thumnails of media, etc.)
 * Add the option of showing the content in a block instead of as a tab
