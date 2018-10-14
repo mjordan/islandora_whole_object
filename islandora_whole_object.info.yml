@@ -1,0 +1,8 @@
+name: 'Islandora Whole Object'
+description: "Provides a representation of an Islandora object that contains...."
+type: module
+package: islandora
+core: 8.x
+dependencies:
+  - islandora
+  - devel

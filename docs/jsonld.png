@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]><html class="ng-csp ie ie8 lte9 lte8" data-placeholder-focus="false" lang="en" ><![endif]-->
+<!--[if IE 9]><html class="ng-csp ie ie9 lte9" data-placeholder-focus="false" lang="en" ><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="ng-csp" data-placeholder-focus="false" lang="en" ><!--<![endif]-->
+	<head data-requesttoken="NgYbKSQkB2RAaSgrM249blQqOwEOOVoQNUFfWT97:ngrbPHp7tFPxuVZ6bccd6O5id41/fN">
+		<meta charset="utf-8">
+		<title>
+		SFU Vault		</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="referrer" content="never">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="theme-color" content="#fff">
+		<link rel="shortcut icon" type="image/png" href="/themes/themes/core/img/favicon.png">
+		<link rel="apple-touch-icon-precomposed" href="/themes/themes/core/img/favicon-touch.png">
+					<link rel="stylesheet" href="/core/css/styles.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/header.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/mobile.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/icons.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/fonts.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/apps.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/fixes.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/multiselect.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/vendor/jquery-ui/themes/base/jquery-ui.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/jquery-ui-fixes.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/tooltip.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/share.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/files_versions/css/versions.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/files_pdfviewer/css/style.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/files_videoviewer/css/style.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/files_videoviewer/css/mediaelementplayer.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/firstrunwizard/css/colorbox.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/firstrunwizard/css/firstrunwizard.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/gallery/css/slideshow.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/gallery/css/gallerybutton.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/core/css/jquery.ocdialog.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/files_sharing/css/public.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/files_sharing/css/mobile.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/files/css/files.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/apps/files/css/upload.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+					<link rel="stylesheet" href="/themes/themes/core/css/styles.css?v=2770e71590f49c921c16bf9b5091cdab" media="screen">
+							<script src="/index.php/core/js/oc.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/jquery/jquery.min.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/jquery-migrate/jquery-migrate.min.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/jquery-ui/ui/jquery-ui.custom.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/underscore/underscore.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/moment/min/moment-with-locales.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/handlebars/handlebars.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/blueimp-md5/js/md5.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/bootstrap/js/tooltip.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/backbone/backbone.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/placeholders.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/compatibility.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/jquery.ocdialog.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/oc-dialogs.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/js.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/l10n.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/octemplate.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/eventsource.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/config.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/search/js/search.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/oc-requesttoken.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/apps.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/mimetype.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/mimetypelist.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/snapjs/dist/latest/snap.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/vendor/backbone/backbone.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/oc-backbone.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/placeholder.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/jquery.avatar.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/avatar.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/shareconfigmodel.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/shareitemmodel.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/sharedialogresharerinfoview.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/sharedialoglinkshareview.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/sharedialogexpirationview.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/sharedialogshareelistview.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/sharedialogview.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/core/js/share.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files_pdfviewer/js/previewplugin.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files_videoviewer/js/viewer.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/firstrunwizard/js/jquery.colorbox.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/firstrunwizard/js/firstrunwizard.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/gallery/js/vendor/bigshot/bigshot-compressed.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/gallery/js/vendor/image-scale/image-scale.min.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/gallery/js/vendor/dompurify/src/purify.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/gallery/js/galleryfileaction.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/gallery/js/slideshow.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/gallery/js/slideshowcontrols.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/gallery/js/slideshowzoomablepreview.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/gallery/js/gallerybutton.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/file-upload.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files_sharing/js/public.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/fileactions.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/fileactionsmenu.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/jquery.iframe-transport.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/jquery.fileupload.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/filesummary.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/breadcrumb.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/fileinfomodel.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/newfilemenu.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/files.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/filelist.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					<script src="/apps/files/js/keyboardshortcuts.js?v=2770e71590f49c921c16bf9b5091cdab"></script>
+					</head>
+	<body id="body-public">
+		<noscript>
+	<div id="nojavascript">
+		<div>
+			This application requires JavaScript for correct operation. Please <a href="http://enable-javascript.com/" target="_blank" rel="noreferrer">enable JavaScript</a> and reload the page.		</div>
+	</div>
+</noscript>
+		
+	<link rel="image_src" href="/index.php/apps/files_sharing/publicpreview?file=/whole_object_jsonld.png&amp;t=zrFV8gacwXc29N9&amp;y=1024&amp;x=1024" />
+
+<div id="notification-container">
+	<div id="notification" style="display: none;"></div>
+</div>
+
+<input type="hidden" id="filesApp" name="filesApp" value="1">
+<input type="hidden" id="isPublic" name="isPublic" value="1">
+<input type="hidden" name="dir" value="" id="dir">
+<input type="hidden" name="downloadURL" value="http://vault.sfu.ca/index.php/s/zrFV8gacwXc29N9/download" id="downloadURL">
+<input type="hidden" name="sharingToken" value="zrFV8gacwXc29N9" id="sharingToken">
+<input type="hidden" name="filename" value="whole_object_jsonld.png" id="filename">
+<input type="hidden" name="mimetype" value="image/png" id="mimetype">
+<input type="hidden" name="previewSupported" value="true" id="previewSupported">
+<input type="hidden" name="mimetypeIcon" value="/core/img/filetypes/image.png" id="mimetypeIcon">
+<input type="hidden" name="filesize" value="50280" id="filesize">
+<input type="hidden" name="maxSizeAnimateGif" value="10" id="maxSizeAnimateGif">
+
+
+<header><div id="header" class="share-file">
+		<a href="/index.php"
+		   title="" id="owncloud">
+			<div class="logo-icon svg">
+			</div>
+		</a>
+
+		<div class="header-appname-container">
+			<h1 class="header-appname">
+				Simon Fraser University			</h1>
+		</div>
+
+		<div id="logo-claim" style="display:none;"></div>
+		<div class="header-right">
+			<span id="details">
+									<span id="save" data-protected="false"
+						  data-owner-display-name="Mark Jordan" data-owner="mjordan" data-name="whole_object_jsonld.png">
+					<button id="save-button">Add to your ownCloud</button>
+					<form class="save-form hidden" action="#">
+						<input type="text" id="remote_address" placeholder="example.com/owncloud"/>
+						<button id="save-button-confirm" class="icon-confirm svg" disabled></button>
+					</form>
+				</span>
+								<a href="http://vault.sfu.ca/index.php/s/zrFV8gacwXc29N9/download" id="download" class="button">
+					<img class="svg" alt="" src="/core/img/actions/download.svg"/>
+					<span id="download-text">Download</span>
+				</a>
+			</span>
+		</div>
+</div></header>
+<div id="content-wrapper">
+	<div id="content">
+		<div id="preview">
+												<!-- Preview frame is filled via JS to support SVG images for modern browsers -->
+					<div id="imgframe"></div>
+								<div class="directDownload">
+					<a href="http://vault.sfu.ca/index.php/s/zrFV8gacwXc29N9/download" id="downloadFile" class="button">
+						<img class="svg" alt="" src="/core/img/actions/download.svg"/>
+						Download whole_object_jsonld.png (49 kB)
+					</a>
+				</div>
+				<div class="directLink">
+					<label for="directLink">Direct link</label>
+					<input id="directLink" type="text" readonly value="http://vault.sfu.ca/index.php/s/zrFV8gacwXc29N9/download">
+				</div>
+					</div>
+	</div>
+	<footer>
+		<p class="info">
+			© 2014 <a href="https://www.sfu.ca/" target="_blank">Simon Fraser University</a><br/>Vault: safe and secure storage in the SFU Data Centre		</p>
+	</footer>
+</div>
+	</body>
+</html>
