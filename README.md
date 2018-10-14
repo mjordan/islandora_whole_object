@@ -30,7 +30,7 @@ That's currently all it does.
 
 * Make the content types this tab shows on configurable (currently it only shows on nodes of type 'islandora_object')
 * Format the content so it's more useful, andby remove our dependency on Devel
-* Add more than just the JSON-LD (e.g., thumnails of media, etc.)
+* Add more than just the JSON-LD (e.g., Solr document, thumnails of media, etc.)
 * Add the option of showing the content in a block instead of as a tab
 
 ## Maintainers
