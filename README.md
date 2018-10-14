@@ -16,19 +16,19 @@ An first attempt at addressing https://github.com/Islandora-CLAW/CLAW/issues/886
 
 ## Usage
 
-After you enable this module, a new tab will appear (for users with 'administer site configuration' permission) on objects:
+After you enable this module, a "Whole Islandora Object" tab will appear (for users with 'administer site configuration' permission) on objects:
 
 ![Whole object menu tab](docs/menu.png)
 
-Clicking the link will show you the JSON-LD of the current object:
+Clicking the link in that tab will show you the JSON-LD of the current object, e.g.:
 
 ![JSON-LD](docs/jsonld.png)
 
-You will then see the JSON-LD for the specified object.
+That's currently all it does.
 
 ## To do
 
-* Make the content types this tab show on configurable (currently it only shows on nodes of type 'islandora_object')
+* Make the content types this tab shows on configurable (currently it only shows on nodes of type 'islandora_object')
 * Format the content so it's more useful, andby remove our dependency on Devel
 * Add more than just the JSON-LD (e.g., thumnails of media, etc.)
 * Add the option of showing the content in a block instead of as a tab
