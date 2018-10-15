@@ -20,23 +20,44 @@ class IslandoraWholeObjectController extends ControllerBase {
    * @return string
    */
    public function wholeObject(NodeInterface $node = NULL, $format = 'jsonld') {
+     $node = \Drupal::routeMatch()->getParameter('node');
+     $nid = $node->id();
+
      switch ($format) {
        case 'node':
-         $get_param = 'json';
          $heading = 'Raw Drupal node as a PHP array';
+         $output = $this->getDrupalRepresentations($nid, 'json', 'node');
          break;
        case 'jsonld':
-         $get_param = 'jsonld';
          $heading = 'JSON-LD as a PHP array';
+         $output = $this->getDrupalRepresentations($nid, 'jsonld', 'jsonld');
          break;
        case 'table':
-         $get_param = 'jsonld';
          $heading = 'Linked Data properties as a table';
+         $output = $this->getDrupalRepresentations($nid, 'jsonld', 'table');
+         break;
+       case 'fedora':
+         $heading = "Fedora's Turtle representation";
+         $output = $this->getFedoraRepresentation($nid);
          break;
      }
 
-     $node = \Drupal::routeMatch()->getParameter('node');
-     $nid = $node->id();
+     return [
+       '#theme' => 'islandora_whole_object_content',
+       '#format' => $format,
+       '#whole_object' => $output,
+       '#heading' => $heading,
+     ];
+   }
+
+   /**
+    * Only show tab on nodes with the 'islandora_object' content type.
+    */
+   public function islandoraContentTypeOnly(NodeInterface $node = NULL) {
+     return ($node->getType() == 'islandora_object') ? AccessResult::allowed() : AccessResult::forbidden();
+   }
+
+   private function getDrupalRepresentations($nid, $get_param, $format) {
      $url = 'http://localhost:8000/node/' . $nid . '?_format=' . $get_param;
      $response = \Drupal::httpClient()->get($url);
      $response_body = (string) $response->getBody();
@@ -58,22 +79,29 @@ class IslandoraWholeObjectController extends ControllerBase {
        }
      }
      else {
+       // $output will be rendered in the template using <pre> tags.
        $output = var_export($whole_object, true);
        $output = SafeMarkup::checkPlain($output);
      }
-
-     return [
-       '#theme' => 'islandora_whole_object_content',
-       '#format' => $format,
-       '#whole_object' => $output,
-       '#heading' => $heading,
-     ];
+     return $output;
    }
 
-   /**
-    * Only show tab on nodes with the 'islandora_object' content type.
-    */
-   public function islandoraContentTypeOnly(NodeInterface $node = NULL) {
-     return ($node->getType() == 'islandora_object') ? AccessResult::allowed() : AccessResult::forbidden();
+   private function getFedoraRepresentation($nid) {
+     // Get the node's UUID from Drupal.
+     $drupal_url = 'http://localhost:8000/node/' . $nid . '?_format=json';
+     $response = \Drupal::httpClient()->get($drupal_url);
+     $response_body = (string) $response->getBody();
+     $body_array = json_decode($response_body, true);
+     $uuid = $body_array['uuid'][0]['value'];
+
+     // Assemble the Fedora URL.
+     $uuid_parts = explode('-', $uuid);
+     $subparts = str_split($uuid_parts[0], 2);
+     $fedora_url = 'http://localhost:8080/fcrepo/rest/' . implode('/', $subparts) . '/'. $uuid;
+
+     // Get the Turtle from Fedora.
+     $response = \Drupal::httpClient()->get($fedora_url);
+     $response_body = (string) $response->getBody();
+     return $response_body;
    }
 }

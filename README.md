@@ -30,6 +30,7 @@ To get a sense of the different ways we might represent the linked data properti
 * `jsonld` (or nothing at the end of the URL): show the JSON-LD converted to a raw PHP array
 * `table`: show the Linked Data properties in a table (currently only show first of multivalued properties)
 * `node`: doesn't show Linked Data properties, just the basic Drupal node structure as a raw PHP array
+* `fedora`: show Fedora's Turle Linked Data representation of the resource
 
 Here's the table output (`http://localhost:8000/node/1/whole_islandora_object/table`):
 
@@ -42,8 +43,6 @@ Once we decide what the most useful representations are, we can add a user inter
 * Add more output formats so people can decide what's useful
   * Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting
   * Add Solr document, thumbnails of media, etc.
-  * Add the Fedora repo representation of the object (e.g. from `http://localhost:8080/fcrepo/rest/xxxx`)
-* Clean up logic to generate various outputs (it's already starting to resemble spaghetti)
 * Add the option of showing the content in a block
 * Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object')
 
