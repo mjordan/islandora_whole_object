@@ -28,9 +28,17 @@ class IslandoraWholeObjectController extends ControllerBase {
      $whole_object = json_decode($response_body, true);
      $whole_object = var_export($whole_object, true);
 
+     if ($format == 'jsonld') {
+       $heading = 'JSON-LD';
+     }
+     if ($format == 'json') {
+       $heading = 'JSON';
+     }
+
      return [
        '#theme' => 'islandora_whole_object_content',
        '#whole_object' => SafeMarkup::checkPlain($whole_object),
+       '#heading' => $heading,
      ];
    }
 
