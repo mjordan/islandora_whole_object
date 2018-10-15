@@ -6,7 +6,7 @@
 function islandora_whole_object_theme($existing, $type, $theme, $path) {
   return [
     'islandora_whole_object_content' => [
-      'variables' => ['whole_object' => NULL, 'heading' => NULL],
+      'variables' => ['format' => NULL, 'whole_object' => NULL, 'heading' => NULL],
     ],
   ];
 }

@@ -15,29 +15,49 @@ class IslandoraWholeObjectController extends ControllerBase {
    * JSON-LD or JSON representation of the object, via Islandora's REST interface.
    *
    * @param string $format
-   *   Either 'jsonld' or 'json', as used by the Islandora REST interface.
+   *   Either 'jsonld', 'node', or 'table'.
    *
    * @return string
    */
    public function wholeObject(NodeInterface $node = NULL, $format = 'jsonld') {
+     switch ($format) {
+       case 'node':
+         $get_param = 'json';
+         $heading = 'Raw Drupal node as a PHP array';
+         break;
+       case 'jsonld':
+         $get_param = 'jsonld';
+         $heading = 'JSON-LD as a PHP array';
+         break;
+       case 'table':
+         $get_param = 'jsonld';
+         $heading = 'Linked Data properties as a table';
+         break;
+     }
+
      $node = \Drupal::routeMatch()->getParameter('node');
      $nid = $node->id();
-     $url = 'http://localhost:8000/node/' . $nid . '?_format=' . $format;
+     $url = 'http://localhost:8000/node/' . $nid . '?_format=' . $get_param;
      $response = \Drupal::httpClient()->get($url);
      $response_body = (string) $response->getBody();
      $whole_object = json_decode($response_body, true);
-     $whole_object = var_export($whole_object, true);
-
-     if ($format == 'jsonld') {
-       $heading = 'JSON-LD';
+     if ($format == 'table') {
+       $properties_to_skip = array('@id', '@type');
+       foreach ($whole_object['@graph'][0] as $property => $value) {
+         if (!in_array($property, $properties_to_skip)) {
+           $output[] = array($property, $value[0]['@value']);
+         }
+       }
      }
-     if ($format == 'json') {
-       $heading = 'JSON';
+     else {
+       $output = var_export($whole_object, true);
+       $output = SafeMarkup::checkPlain($output);
      }
 
      return [
        '#theme' => 'islandora_whole_object_content',
-       '#whole_object' => SafeMarkup::checkPlain($whole_object),
+       '#format' => $format,
+       '#whole_object' => $output,
        '#heading' => $heading,
      ];
    }

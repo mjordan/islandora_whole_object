@@ -2,6 +2,18 @@
   {{ salutation }}
   {% if whole_object %}
     <h3>{{ heading }}</h3>
+    {% if format == 'table' %}
+    <div class="islandora_whole_object_content">
+      <table>
+      {% for property in whole_object %}
+        <tr>
+        <td>{{ property.0 }}</td><td>{{ property.1 }}</td>
+        </tr>
+      {% endfor %}
+      </table>
+    </div>
+    {% else %}
     <div class="islandora_whole_object_content"><pre>{{ whole_object }}</pre></div>
+    {% endif %}
   {% endif %}
 </div>
