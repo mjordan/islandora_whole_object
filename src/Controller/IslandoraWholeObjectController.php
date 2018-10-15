@@ -41,11 +41,18 @@ class IslandoraWholeObjectController extends ControllerBase {
      $response = \Drupal::httpClient()->get($url);
      $response_body = (string) $response->getBody();
      $whole_object = json_decode($response_body, true);
+
      if ($format == 'table') {
        $properties_to_skip = array('@id', '@type');
        foreach ($whole_object['@graph'][0] as $property => $value) {
          if (!in_array($property, $properties_to_skip)) {
-           $output[] = array($property, $value[0]['@value']);
+           // Note: For now, we only pick out the first of multivalued properties.
+           if ($property == 'http://schema.org/author') {
+             $output[] = array($property, $value[0]['@id']);
+           }
+           else {
+             $output[] = array($property, $value[0]['@value']);
+           }
          }
        }
      }

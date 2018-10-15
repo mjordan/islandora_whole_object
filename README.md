@@ -28,10 +28,10 @@ Clicking the link in that tab will render the JSON-LD of the current object, for
 To get a sense of the different ways we might represent the linked data properties of an Islandora object, you can use a simple way to see different represtations of that data. Appending the following to the end of `/node/1/whole_islandora_object` (e.g., `/node/1/whole_islandora_object/table`) will result in different outputs:
 
 * `jsonld` (or nothing at the end of the URL): show the JSON-LD converted to a raw PHP array
-* `table`: show the Linked Data properties in a table
+* `table`: show the Linked Data properties in a table (currently only show first of multivalued properties)
 * `node`: doesn't show Linked Data properties, just the basic Drupal node structure as a raw PHP array
 
-Here's the table output:
+Here's the table output (`http://localhost:8000/node/1/whole_islandora_object/table`):
 
 ![table output](docs/table.png)
 
@@ -39,15 +39,14 @@ Once we decide what the most useful representations are, we can add a user inter
 
 ## To do
 
-* Add the option of showing the content in a block
-* Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object')
 * Add more output formats so people can decide what's useful
-* Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting
-* Add Solr document, thumnbails of media, etc.
+  * Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting
+* Clean up logic to generate various outputs (it's already starting to resemble spaghetti)
+* Add the option of showing the content in a block
+* Add Solr document, thumbnails of media, etc.
+* Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object')
 
-## Maintainers
-
-Current maintainer:
+## Current maintainer
 
 * [Mark Jordan](https://github.com/mjordan)
 
