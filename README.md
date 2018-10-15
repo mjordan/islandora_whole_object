@@ -41,9 +41,10 @@ Once we decide what the most useful representations are, we can add a user inter
 
 * Add more output formats so people can decide what's useful
   * Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting
+  * Add Solr document, thumbnails of media, etc.
+  * Add the Fedora repo representation of the object (e.g. from `http://localhost:8080/fcrepo/rest/xxxx`)
 * Clean up logic to generate various outputs (it's already starting to resemble spaghetti)
 * Add the option of showing the content in a block
-* Add Solr document, thumbnails of media, etc.
 * Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object')
 
 ## Current maintainer

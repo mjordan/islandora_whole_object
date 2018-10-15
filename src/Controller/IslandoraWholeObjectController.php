@@ -51,7 +51,8 @@ class IslandoraWholeObjectController extends ControllerBase {
              $output[] = array($property, $value[0]['@id']);
            }
            else {
-             $output[] = array($property, $value[0]['@value']);
+             // @todo: Check for the presence of @type and @language.
+             $output[] = array($property, $value[0]['@value'], $value[0]['@type'], $value[0]['@language']);
            }
          }
        }
