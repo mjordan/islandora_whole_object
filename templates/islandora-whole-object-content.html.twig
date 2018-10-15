@@ -1,0 +1,7 @@
+<div {{ attributes }}>
+  {{ salutation }}
+  {% if whole_object %}
+    <h3>JSON-LD</h3>
+    <div class="islandora_whole_object_content"><pre>{{ whole_object }}</pre></div>
+  {% endif %}
+</div>

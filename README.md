@@ -7,7 +7,6 @@ An first attempt at addressing https://github.com/Islandora-CLAW/CLAW/issues/886
 ## Requirements
 
 * [Islandora](https://github.com/Islandora-CLAW/islandora) a.k.a. CLAW
-* [Devel](https://www.drupal.org/project/devel)
 
 ## Installation
 
@@ -31,7 +30,7 @@ That's currently all it does. More to come! There is one Easter egg: while you a
 * Add the option of showing the content in a block
 * Convert the Easter egg into something useful?
 * Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object')
-* Format the content so it's more useful, and remove our dependency on Devel
+* Format the content so it's more useful
 * Add more than just the JSON-LD (e.g., Solr document, thumnbails of media, etc.)
 
 ## Maintainers
