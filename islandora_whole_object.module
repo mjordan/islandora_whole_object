@@ -19,3 +19,12 @@ function template_preprocess_islandora_whole_object_content(&$variables) {
     'id' => ['islandora_whole_object'],
   ];
 }
+
+/**
+* Implements hook_page_attachments().
+*/
+function islandora_whole_object_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'islandora_whole_object/jsonld-vis.js';
+  $attachments['#attached']['library'][] = 'islandora_whole_object/islandora_whole_object.js';
+  $attachments['#attached']['drupalSettings']['islandora_whole_object']['islandora_object_jsonld'] = 'foo';
+}
