@@ -1,0 +1,14 @@
+islandora_whole_object:
+  version: 1.x
+  js:
+    js/islandora_whole_object.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+jsonld-vis:
+  version: 1.x
+  css:
+    theme:
+      css/jsonld-vis.css: {}
+  js:
+    js/jsonld-vis.js: {}

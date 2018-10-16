@@ -24,6 +24,7 @@ class IslandoraWholeObjectController extends ControllerBase {
      $nid = $node->id();
 
      switch ($format) {
+       // The case 'jsonldvisualized' is handled in islandora_whole_object_page_attachments().
        case 'node':
          $heading = 'Raw Drupal node as a PHP array';
          $output = $this->getDrupalRepresentations($nid, 'json', 'node');
@@ -32,9 +33,6 @@ class IslandoraWholeObjectController extends ControllerBase {
          $heading = 'JSON-LD as a PHP array';
          $output = $this->getDrupalRepresentations($nid, 'jsonld', 'jsonld');
          break;
-       case 'jsonldvisualized':
-         $output = $this->getRawJsonld($nid);
-         return ['#theme' => 'islandora_whole_object_raw', '#jsonld_representation' => $output];
        case 'table':
          $heading = 'Linked Data properties as a table';
          $output = $this->getDrupalRepresentations($nid, 'jsonld', 'table');
@@ -108,10 +106,4 @@ class IslandoraWholeObjectController extends ControllerBase {
      return $response_body;
    }
 
-   private function getRawJsonld($nid) {
-     $drupal_url = 'http://localhost:8000/node/' . $nid . '?_format=jsonld';
-     $response = \Drupal::httpClient()->get($drupal_url);
-     $response_body = (string) $response->getBody();
-     return $response_body;
-   }
 }

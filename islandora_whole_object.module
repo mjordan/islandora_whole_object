@@ -24,7 +24,15 @@ function template_preprocess_islandora_whole_object_content(&$variables) {
 * Implements hook_page_attachments().
 */
 function islandora_whole_object_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'islandora_whole_object/jsonld-vis.js';
-  $attachments['#attached']['library'][] = 'islandora_whole_object/islandora_whole_object.js';
-  $attachments['#attached']['drupalSettings']['islandora_whole_object']['islandora_object_jsonld'] = 'foo';
+  if (\Drupal::routeMatch()->getRouteName() == 'islandora_whole_object.whole_object') {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $path_args = explode('/', $current_path);
+    if ($path_args[4] == 'jsonldvisualized') {
+      $node = \Drupal::routeMatch()->getParameter('node');
+      $nid = $node->id();
+      $attachments['#attached']['library'][] = 'islandora_whole_object/islandora_whole_object';
+      // $attachments['#attached']['library'][] = 'islandora_whole_object/jsonld-vis';
+      $attachments['#attached']['drupalSettings']['islandora_whole_object']['nid'] = $nid;
+    }
+  }
 }
