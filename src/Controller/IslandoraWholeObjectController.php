@@ -15,11 +15,11 @@ class IslandoraWholeObjectController extends ControllerBase {
    * JSON-LD or JSON representation of the object, via Islandora's REST interface.
    *
    * @param string $format
-   *   Either 'jsonld', 'node', or 'table'.
+   *   Either 'jsonld', 'node', 'fedora', or 'table'.
    *
    * @return string
    */
-   public function wholeObject(NodeInterface $node = NULL, $format = 'jsonld') {
+   public function wholeObject(NodeInterface $node = NULL, $format = 'table') {
      $node = \Drupal::routeMatch()->getParameter('node');
      $nid = $node->id();
 
