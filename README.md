@@ -27,8 +27,8 @@ Clicking the link in that tab will render the JSON-LD of the current object, for
 
 To get a sense of the different ways we might represent the linked data properties of an Islandora object, you can use a simple way to see different represtations of that data. Appending the following to the end of `/node/1/whole_islandora_object` (e.g., `/node/1/whole_islandora_object/table`) will result in different outputs:
 
-* `jsonld` (or nothing at the end of the URL): show the JSON-LD converted to a raw PHP array
-* `table`: show the Linked Data properties in a table (currently only show first of multivalued properties)
+* `jsonld` (or nothing at the end of the URL): show the JSON-LD converted to a raw PHP array as illustrated above
+* `table`: show the Linked Data properties in a table (currently only show first of multivalued properties) as illustrated below
 * `node`: doesn't show Linked Data properties, just the basic Drupal node structure as a raw PHP array
 * `fedora`: show Fedora's Turle Linked Data representation of the resource
 
@@ -36,15 +36,16 @@ Here's the table output (`http://localhost:8000/node/1/whole_islandora_object/ta
 
 ![table output](docs/table.png)
 
-Once we decide what the most useful representations are, we can add a user interface for choosing them, e.g., each one in a tab, let the user choose in a select widget, etc.
+Once we decide what the most useful representations are, we can add a user interface for choosing them, e.g., each one in a subtab, let the user choose in a select widget, etc.
 
 ## To do
 
-* Add more output formats so people can decide what's useful
-  * Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting
+* Add more output formats so people can decide what's useful.
+  * Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting. See issue #1.
   * Add Solr document, thumbnails of media, etc.
-* Add the option of showing the content in a block
-* Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object')
+  * Use a View to assemble everything and provide a custom Twig template to render it.
+* Add the option of showing the content in a block.
+* Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object').
 
 ## Current maintainer
 
