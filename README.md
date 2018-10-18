@@ -23,9 +23,11 @@ After you enable this module, a "Whole Islandora Object" tab will appear on Isla
 
 To get a sense of the different ways we might represent the linked data properties of an Islandora object, you can use a simple way to see different represtations of that data. Appending the following to the end of `/node/1/whole_islandora_object` (e.g., `/node/1/whole_islandora_object/table`) will result in different outputs:
 
-* `table` (or nothing at the end of the URL): show the Linked Data properties in a table (currently only show first of multivalued properties) as illustrated above 
-* `jsonld`:  show the JSON-LD converted to a raw PHP array as illustrated below 
-* `node`: doesn't show Linked Data properties, just the basic Drupal node structure as a raw PHP array
+* `overview` (or nothing at the end of the URL): show the combination of 'table', 'media', 'fedora', and 'solr' as described below
+* `table` (or nothing at the end of the URL): show the Linked Data properties in a table (currently only show first of multivalued properties) as illustrated above
+* `media`: list the media associated with the object
+* `jsonld`: show the JSON-LD converted to a raw PHP array as illustrated below 
+* `node`: show the basic Drupal node structure as a raw PHP array
 * `fedora`: show Fedora's Turle Linked Data representation of the resource
 * `solr`: show the Solr document for the node
 
