@@ -30,11 +30,13 @@ class IslandoraWholeObjectController extends ControllerBase {
            'table' => 'RDF properties of this Islandora object',
            'media' => 'Media associated with this object',
            'fedora' => "Fedora's RDF (Turtle) representation of this object",
+           'solr' => "Solr document for this object",
          );
          $output = array(
            'table' => $this->getDrupalRepresentations($nid, 'jsonld', 'table'),
            'media' => $this->getDrupalRepresentations($nid, '', 'media'),
            'fedora' => $this->getFedoraRepresentation($nid),
+           'solr' => $this->getSolrDocument($nid),
          );
          break;
        case 'node':
@@ -56,6 +58,10 @@ class IslandoraWholeObjectController extends ControllerBase {
        case 'fedora':
          $heading = "Fedora's RDF (Turtle) representation of this object";
          $output = $this->getFedoraRepresentation($nid);
+         break;
+       case 'solr':
+         $heading = "Solr document for this object";
+         $output = $this->getSolrDocument($nid);
          break;
      }
 
@@ -127,6 +133,18 @@ class IslandoraWholeObjectController extends ControllerBase {
 
      // Get the Turtle from Fedora.
      $response = \Drupal::httpClient()->get($fedora_url);
+     $response_body = (string) $response->getBody();
+     return $response_body;
+   }
+
+   /**
+    * Get the node's Solr document.
+    *
+    * @todo: Get Solr base URL from config; wrap in exception handling code.
+    */
+   private function getSolrDocument($nid) {
+     $solr_url = 'http://localhost:8983/solr/CLAW/select?q=ss_search_api_id:%22entity:node/' . $nid . ':en%22';
+     $response = \Drupal::httpClient()->get($solr_url);
      $response_body = (string) $response->getBody();
      return $response_body;
    }

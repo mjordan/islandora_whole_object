@@ -27,6 +27,7 @@ To get a sense of the different ways we might represent the linked data properti
 * `jsonld`:  show the JSON-LD converted to a raw PHP array as illustrated below 
 * `node`: doesn't show Linked Data properties, just the basic Drupal node structure as a raw PHP array
 * `fedora`: show Fedora's Turle Linked Data representation of the resource
+* `solr`: show the Solr document for the node
 
 Here's the raw (PHP array) JSON-LD output (e.g., `http://localhost:8000/node/1/whole_islandora_object/jsonld`):
 
@@ -35,9 +36,9 @@ Here's the raw (PHP array) JSON-LD output (e.g., `http://localhost:8000/node/1/w
 ## To do
 
 * Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting. See issue #1.
-* Add Solr document for the object.
 * Add the option of showing the content in a block.
 * Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object').
+* Make what shows in the overview for the object configurable.
 
 ## Current maintainer
 
