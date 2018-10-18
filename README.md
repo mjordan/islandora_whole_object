@@ -19,9 +19,9 @@ After you enable this module, a "Whole Islandora Object" tab will appear on Isla
 
 ![Whole object menu tab](docs/menu.png)
 
-Clicking the link in that tab will render the JSON-LD of the current object in a table:
+Clicking the link in that tab will provide the RDF properties of the current object, all media linked to the object, and Fedora's RDF representation of the object (the Fedora data is not visible in this screenshot):
 
-![table output](docs/table.png)
+![overview](docs/overview.png)
 
 ## Other representations
 
@@ -32,18 +32,14 @@ To get a sense of the different ways we might represent the linked data properti
 * `node`: doesn't show Linked Data properties, just the basic Drupal node structure as a raw PHP array
 * `fedora`: show Fedora's Turle Linked Data representation of the resource
 
-Here's the raw (PHP array) JSON-LD output (`http://localhost:8000/node/1/whole_islandora_object/jsonld`):
+Here's the raw (PHP array) JSON-LD output (e.g., `http://localhost:8000/node/1/whole_islandora_object/jsonld`):
 
 ![JSON-LD](docs/jsonld.png)
 
-Once we decide what the most useful representations are, we can add a user interface for choosing them, e.g., each one in a subtab, let the user choose in a select widget, etc.
-
 ## To do
 
-* Add more output formats so people can decide what's useful.
-  * Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting. See issue #1.
-  * Add Solr document, thumbnails of media, etc.
-  * Use a View to assemble everything and provide a custom Twig template to render it.
+* Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting. See issue #1.
+* Add Solr document for the object.
 * Add the option of showing the content in a block.
 * Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object').
 
