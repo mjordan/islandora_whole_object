@@ -19,7 +19,7 @@ After you enable this module, a "Whole Islandora Object" tab will appear on Isla
 
 ![Whole object menu tab](docs/menu.png)
 
-Clicking the link in that tab will provide the RDF properties of the current object, all media linked to the object, and Fedora's RDF representation of the object (the Fedora data is not visible in this screenshot):
+Clicking the link in that tab will provide the RDF properties of the current object, all media linked to the object, and Fedora's RDF representation of the object:
 
 ![overview](docs/overview.png)
 
