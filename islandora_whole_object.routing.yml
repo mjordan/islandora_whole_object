@@ -3,7 +3,7 @@ islandora_whole_object.whole_object:
   defaults:
     _controller: '\Drupal\islandora_whole_object\Controller\IslandoraWholeObjectController::wholeObject'
     _title: 'Islandora Object'
-    format: 'table'
+    format: 'whole'
   requirements:
     _permission: 'administer site configuration'
     node: \d+

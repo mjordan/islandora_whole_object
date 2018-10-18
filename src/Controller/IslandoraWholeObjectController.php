@@ -15,16 +15,28 @@ class IslandoraWholeObjectController extends ControllerBase {
    * JSON-LD or JSON representation of the object, via Islandora's REST interface.
    *
    * @param string $format
-   *   Either 'jsonld', 'node', 'fedora', or 'table'.
+   *   Either 'whole', 'jsonld', 'node', 'fedora', 'table', or 'media'.
    *
    * @return string
    */
-   public function wholeObject(NodeInterface $node = NULL, $format = 'table') {
+   public function wholeObject(NodeInterface $node = NULL, $format = 'whole') {
      $node = \Drupal::routeMatch()->getParameter('node');
      $nid = $node->id();
 
      switch ($format) {
        // The case 'jsonldvisualized' is handled in islandora_whole_object_page_attachments().
+       case 'whole':
+         $heading = array(
+           'table' => 'RDF properties of this Islandora object',
+           'media' => 'Media associated with this object',
+           'fedora' => "Fedora's RDF (Turtle) representation of this object",
+         );
+         $output = array(
+           'table' => $this->getDrupalRepresentations($nid, 'jsonld', 'table'),
+           'media' => $this->getDrupalRepresentations($nid, '', 'media'),
+           'fedora' => $this->getFedoraRepresentation($nid),
+         );
+         break;
        case 'node':
          $heading = 'Raw Drupal node as a PHP array';
          $output = $this->getDrupalRepresentations($nid, 'json', 'node');
@@ -34,11 +46,15 @@ class IslandoraWholeObjectController extends ControllerBase {
          $output = $this->getDrupalRepresentations($nid, 'jsonld', 'jsonld');
          break;
        case 'table':
-         $heading = 'Linked Data properties as a table';
+         $heading = 'RDF properties of this Islandora object';
          $output = $this->getDrupalRepresentations($nid, 'jsonld', 'table');
          break;
+       case 'media':
+         $heading = 'Media associated with this object';
+         $output = $this->getDrupalRepresentations($nid, '', 'media');
+         break;
        case 'fedora':
-         $heading = "Fedora's Turtle representation";
+         $heading = "Fedora's RDF (Turtle) representation of this object";
          $output = $this->getFedoraRepresentation($nid);
          break;
      }
@@ -58,6 +74,9 @@ class IslandoraWholeObjectController extends ControllerBase {
      return ($node->getType() == 'islandora_object') ? AccessResult::allowed() : AccessResult::forbidden();
    }
 
+   /**
+    * Get various representations of the object.
+    */
    private function getDrupalRepresentations($nid, $get_param, $format) {
      $url = 'http://localhost:8000/node/' . $nid . '?_format=' . $get_param;
      $response = \Drupal::httpClient()->get($url);
@@ -79,6 +98,9 @@ class IslandoraWholeObjectController extends ControllerBase {
          }
        }
      }
+     elseif ($format == 'media') {
+       $output = views_embed_view('whole_islandora_object_media', 'embed_1', $nid);
+     }
      else {
        // $output will be rendered in the template using <pre> tags.
        $output = var_export($whole_object, true);
@@ -87,6 +109,9 @@ class IslandoraWholeObjectController extends ControllerBase {
      return $output;
    }
 
+   /**
+    * Get Fedora's Turtle representation of the object.
+    */
    private function getFedoraRepresentation($nid) {
      // Get the node's UUID from Drupal.
      $drupal_url = 'http://localhost:8000/node/' . $nid . '?_format=json';

@@ -1,8 +1,25 @@
 <div {{ attributes }}>
-  {{ salutation }}
   {% if whole_object %}
+    {% if format == 'whole' %}
+    <div class="islandora_whole_object_content">
+      <h3>{{ heading.table }}</h3>
+      <table>
+      <th>Property</th><th>Value</th><th>Type</th><th>Language</th>
+      {% for property in whole_object.table %}
+        <tr>
+        <td>{{ property.0 }}</td><td>{{ property.1 }}</td><td>{{ property.2 }}</td><td>{{ property.3 }}</td>
+        </tr>
+      {% endfor %}
+      </table>
+    </div>
+      <h3>{{ heading.media }}</h3>
+      <div> {{ whole_object.media }}</div>
+    <h3>{{ heading.fedora }}</h3>
+    <div class="islandora_whole_object_content"><pre>{{ whole_object.fedora }}</pre></div>
+
+    {% elseif format == 'table' %}
+
     <h3>{{ heading }}</h3>
-    {% if format == 'table' %}
     <div class="islandora_whole_object_content">
       <table>
       <th>Property</th><th>Value</th><th>Type</th><th>Language</th>
@@ -13,8 +30,14 @@
       {% endfor %}
       </table>
     </div>
+
+    {% elseif format == 'media' %}
+      <h3>{{ heading }}</h3>
+      <div class="islandora_whole_object_content">{{ whole_object }}</div>
     {% else %}
+    <h3>{{ heading }}</h3>
     <div class="islandora_whole_object_content"><pre>{{ whole_object }}</pre></div>
     {% endif %}
+
   {% endif %}
 </div>
