@@ -15,11 +15,7 @@ A first attempt at addressing https://github.com/Islandora-CLAW/CLAW/issues/886.
 
 ## Usage
 
-After you enable this module, a "Whole Islandora Object" tab will appear on Islandora objects, for users with 'administer site configuration' permission:
-
-![Whole object menu tab](docs/menu.png)
-
-Clicking the link in that tab will provide the RDF properties of the current object, all media linked to the object, and Fedora's RDF representation of the object:
+After you enable this module, a "Whole Islandora Object" tab will appear on Islandora objects, for users with 'administer site configuration' permission. Clicking the link in that tab will provide the RDF properties of the current object, all media linked to the object, and Fedora's RDF representation of the object:
 
 ![overview](docs/overview.png)
 
