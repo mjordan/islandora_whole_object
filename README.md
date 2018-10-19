@@ -44,7 +44,6 @@ Here's the raw (PHP array) JSON-LD output (e.g., `http://localhost:8000/node/1/w
 * Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting. See issue #1.
 * Add the option of showing the content in a block.
 * Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object').
-* Make what shows in the overview for the object configurable.
 
 ## Current maintainer
 
