@@ -1,0 +1,5 @@
+system.islandora_whole_object_settings:
+  title: 'Islandora Whole Object Settings'
+  parent: system.admin_config_islandora
+  route_name: islandora_whole_object.settings
+  description: 'Confgure Islandora Whole Object settings.'

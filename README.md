@@ -19,6 +19,10 @@ After you enable this module, a "Whole Islandora Object" tab will appear on Isla
 
 ![overview](docs/overview.png)
 
+## Configuration
+
+The only configuration option provided is what representations you want to include in the 'overview'. By default 'table', 'media', 'fedora', and 'solr' are enabled. If you want to change what is included, visit `admin/config/islandora_whole_object/settings`.
+
 ## Other representations
 
 To get a sense of the different ways we might represent the linked data properties of an Islandora object, you can use a simple way to see different represtations of that data. Appending the following to the end of `/node/1/whole_islandora_object` (e.g., `/node/1/whole_islandora_object/table`) will result in different outputs:

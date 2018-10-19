@@ -8,3 +8,11 @@ islandora_whole_object.whole_object:
     _permission: 'administer site configuration'
     node: \d+
     _custom_access: '\Drupal\islandora_whole_object\Controller\IslandoraWholeObjectController::islandoraContentTypeOnly'
+
+islandora_whole_object.settings:
+  path: '/admin/config/islandora_whole_object/settings'
+  defaults:
+    _form: '\Drupal\islandora_whole_object\Form\IslandoraWholeObjectSettingsForm'
+    _title: 'Islandora Whole Object'
+  requirements:
+    _permission: 'administer site configuration'

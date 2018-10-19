@@ -11,6 +11,13 @@ use Drupal\Component\Utility\SafeMarkup;
 * Controller.
 */
 class IslandoraWholeObjectController extends ControllerBase {
+  protected $representations;
+
+  public function __construct() {
+    $config = \Drupal::config('islandora_whole_object.settings');
+    $this->representations = $config->get('show_representations');
+  }
+
   /**
    * JSON-LD or JSON representation of the object, via Islandora's REST interface.
    *
@@ -24,20 +31,25 @@ class IslandoraWholeObjectController extends ControllerBase {
      $nid = $node->id();
 
      switch ($format) {
-       // The case 'jsonldvisualized' is handled in islandora_whole_object_page_attachments().
+       // The case 'jsonldvisualized' will be handled in islandora_whole_object_page_attachments().
        case 'whole':
+         // These headings are used in the 'whole' output, but they are slightly
+         // different (and assigned within each case) when only one representation
+         // is rendered.
          $heading = array(
            'table' => 'RDF properties of this Islandora object',
            'media' => 'Media associated with this object',
            'fedora' => "Fedora's RDF (Turtle) representation of this object",
            'solr' => "Solr document for this object",
          );
+         $heading = $this->filterRepresentations($heading);
          $output = array(
            'table' => $this->getDrupalRepresentations($nid, 'jsonld', 'table'),
            'media' => $this->getDrupalRepresentations($nid, '', 'media'),
            'fedora' => $this->getFedoraRepresentation($nid),
            'solr' => $this->getSolrDocument($nid),
          );
+         $output = $this->filterRepresentations($output);
          break;
        case 'node':
          $heading = 'Raw Drupal node as a PHP array';
@@ -148,5 +160,32 @@ class IslandoraWholeObjectController extends ControllerBase {
      $response_body = (string) $response->getBody();
      return $response_body;
    }
+
+   /**
+    * Filter out the configuration values that are not selected in the admin settings.
+    *
+    * @param array $array
+    *   One of the arrays defined in the 'whole' case,
+    *   $heading or $output.
+    *
+    * @return array
+    *   The same array minus members whose checkboxes were
+    *   not checked in the admin form.
+    */
+   private function filterRepresentations($array) {
+     $wanted_keys = array();
+     foreach($this->representations as $key => $value) {
+       if (strlen($value) > 1) {
+         $wanted_keys[] = $key;
+       }
+     }
+     $filtered = array();
+     foreach ($array as $key => $value) {
+       if (in_array($key, $wanted_keys)) {
+         $filtered[$key] = $value;
+       }
+     } 
+     return $filtered;
+  }
 
 }
