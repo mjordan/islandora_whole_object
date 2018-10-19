@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A first attempt at addressing https://github.com/Islandora-CLAW/CLAW/issues/886. Mainly me learning Islandora CLAW's data structures and how to render them in a Drupal 8 module.
+A first attempt at addressing https://github.com/Islandora-CLAW/CLAW/issues/886. Since Islandora "objects" are comprised of data from a variety of sources, repo administrators and other users may find it useful to see this data in one place for diagnostic or other purposes.
 
 ## Requirements
 
@@ -15,7 +15,7 @@ A first attempt at addressing https://github.com/Islandora-CLAW/CLAW/issues/886.
 
 ## Usage
 
-After you enable this module, a "Whole Islandora Object" tab will appear on Islandora objects, for users with 'administer site configuration' permission. Clicking the link in that tab will provide the RDF properties of the current object, all media linked to the object, and Fedora's RDF representation of the object:
+After you enable this module, a "Whole Islandora Object" tab will appear on Islandora objects, for users with 'administer site configuration' permission. Clicking the link in that tab will provide the RDF properties of the current object, all media linked to the object, Fedora's RDF representation of the object, and the Solr document for the object:
 
 ![overview](docs/overview.png)
 
@@ -28,7 +28,7 @@ To get a sense of the different ways we might represent the linked data properti
 * `media`: list the media associated with the object
 * `jsonld`: show the JSON-LD converted to a raw PHP array as illustrated below 
 * `node`: show the basic Drupal node structure as a raw PHP array
-* `fedora`: show Fedora's Turle Linked Data representation of the resource
+* `fedora`: show Fedora's Turtle Linked Data representation of the resource
 * `solr`: show the Solr document for the node
 
 Here's the raw (PHP array) JSON-LD output (e.g., `http://localhost:8000/node/1/whole_islandora_object/jsonld`):
