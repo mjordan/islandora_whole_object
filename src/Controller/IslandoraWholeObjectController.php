@@ -15,7 +15,13 @@ class IslandoraWholeObjectController extends ControllerBase {
 
   public function __construct() {
     $config = \Drupal::config('islandora_whole_object.settings');
-    $this->representations = $config->get('show_representations');
+    $representations = array(
+      'table' => 'table',
+      'media' => 'media',
+      'fedora' => 'fedora',
+      'solr' => 'solr',
+    );
+    $this->representations = $config->get('show_representations') ?: $representations;
   }
 
   /**
