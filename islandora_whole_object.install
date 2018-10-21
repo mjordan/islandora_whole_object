@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * Implements hook_uninstall().
+ */
+function islandora_whole_object_uninstall() {
+  \Drupal::configFactory()->getEditable('islandora_whole_object.settings')->delete();
+}
+
