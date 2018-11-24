@@ -123,7 +123,7 @@ class IslandoraWholeObjectController extends ControllerBase {
        }
      }
      elseif ($format == 'media') {
-       $output = views_embed_view('whole_islandora_object_media', 'embed_1', $nid);
+       $output = views_embed_view('media_of', 'page_1', $nid);
      }
      else {
        // $output will be rendered in the template using <pre> tags.
