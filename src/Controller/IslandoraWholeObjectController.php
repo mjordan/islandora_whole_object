@@ -36,6 +36,8 @@ class IslandoraWholeObjectController extends ControllerBase {
      $node = \Drupal::routeMatch()->getParameter('node');
      $nid = $node->id();
 
+     drupal_set_message('foofoo', 'warning');
+
      switch ($format) {
        // The case 'jsonldvisualized' will be handled in islandora_whole_object_page_attachments().
        case 'whole':
@@ -150,9 +152,14 @@ class IslandoraWholeObjectController extends ControllerBase {
      $fedora_url = 'http://localhost:8080/fcrepo/rest/' . implode('/', $subparts) . '/'. $uuid;
 
      // Get the Turtle from Fedora.
-     $response = \Drupal::httpClient()->get($fedora_url);
-     $response_body = (string) $response->getBody();
-     return $response_body;
+     $client = \Drupal::httpClient();
+     $response = $client->request('GET', $fedora_url, ['http_errors' => false]);
+     if ($response->getStatusCode() == 404) {
+       $response_output = t('Resource @fedora_url not found.', array('@fedora_url' => $fedora_url));
+     } else {
+       $response_output = (string) $response->getBody();
+     }
+     return $response_output;
    }
 
    /**
