@@ -36,8 +36,6 @@ class IslandoraWholeObjectController extends ControllerBase {
      $node = \Drupal::routeMatch()->getParameter('node');
      $nid = $node->id();
 
-     drupal_set_message('foofoo', 'warning');
-
      switch ($format) {
        // The case 'jsonldvisualized' will be handled in islandora_whole_object_page_attachments().
        case 'whole':
