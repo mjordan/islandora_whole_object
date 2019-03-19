@@ -12,6 +12,7 @@ use Drupal\Component\Utility\SafeMarkup;
 */
 class IslandoraWholeObjectController extends ControllerBase {
   protected $representations;
+  protected $islandora_node_types;
 
   public function __construct() {
     $config = \Drupal::config('islandora_whole_object.settings');
@@ -21,7 +22,9 @@ class IslandoraWholeObjectController extends ControllerBase {
       'fedora' => 'fedora',
       'solr' => 'solr',
     );
+    $islandora_node_types = array();
     $this->representations = $config->get('show_representations') ?: $representations;
+    $this->islandora_node_types = $config->get('islandora_node_types') ?: $islandora_node_types;
   }
 
   /**
@@ -89,13 +92,6 @@ class IslandoraWholeObjectController extends ControllerBase {
        '#whole_object' => $output,
        '#heading' => $heading,
      ];
-   }
-
-   /**
-    * Only show tab on nodes with the 'islandora_object' content type.
-    */
-   public function islandoraContentTypeOnly(NodeInterface $node = NULL) {
-     return ($node->getType() == 'islandora_object') ? AccessResult::allowed() : AccessResult::forbidden();
    }
 
    /**
