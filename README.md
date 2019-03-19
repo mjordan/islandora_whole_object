@@ -30,7 +30,11 @@ After you enable this module, some new blocks will show up in your "Block Layout
 
 ## Configuration
 
-The blocks provided by this module are standard Drupal blocks, so you can configure them as you like. However, since they contain more information than most blocks do, you should place them in wide regions, such as "Content suffix" (if your theme provides that region). You should also display the blocks for Islandora content types, and restrict access to specific roles.
+The blocks provided by this module are standard Drupal blocks, so you can configure them as you like. However, since they contain more information than most blocks do, you should:
+
+* place them in wide regions, such as "Content suffix" (if your theme provides that region)
+* configure the blocks so they display only for Islandora content types
+* configure the blocks so they display only for specific roles
 
 ## To do
 

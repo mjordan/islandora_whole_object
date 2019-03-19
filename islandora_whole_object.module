@@ -23,7 +23,7 @@ function islandora_whole_object_theme($existing, $type, $theme, $path) {
 * Implements hook_page_attachments().
 */
 function islandora_whole_object_page_attachments(array &$attachments) {
-  if (\Drupal::routeMatch()->getRouteName() == 'islandora_whole_object.whole_object') {
+  if (\Drupal::routeMatch()->getRouteName() == 'entity.node.canonical') {
     $current_path = \Drupal::service('path.current')->getPath();
     $path_args = explode('/', $current_path);
     if ($path_args[4] == 'jsonldvisualized') {
@@ -39,11 +39,9 @@ function islandora_whole_object_page_attachments(array &$attachments) {
 
 /**
  * Implements hook_views_pre_render().
- *
- * Note: this doesn't work with the Media block.
  */
 function islandora_whole_object_views_pre_render(ViewExecutable $view) {
-  if (\Drupal::routeMatch()->getRouteName() == 'islandora_whole_object.whole_object') {
+  if (\Drupal::routeMatch()->getRouteName() == 'entity.node.canonical') {
     if ($view->id() == 'media_of' && $view->current_display == 'page_1') {
       unset($view->field['media_bulk_form']);
       unset($view->field['operations']);

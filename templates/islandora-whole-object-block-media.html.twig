@@ -1,4 +1,15 @@
-<div {{ attributes }}>
-
-      <div class="islandora_whole_object_content">{{ content }}</div>
-</div>
+{#
+/**
+ * @file
+ * Template for Islandora Whole Object's Media block.
+ *
+ * Note that this view is modified by an implementation of
+ * hook_views_pre_render() in the .module file.
+ *
+ * Available variables:
+ * - content: The content of the Media view.
+ *
+ * @ingroup themeable
+ */
+#}
+  <div class="islandora_whole_object_content">{{ content }}</div>
