@@ -2,11 +2,20 @@
 
 ## Introduction
 
-A first attempt at addressing https://github.com/Islandora-CLAW/CLAW/issues/886. Since Islandora "objects" are comprised of data from a variety of sources, repo administrators and other users may find it useful to see this data in one place for diagnostic or other purposes.
+Islandora 8 module that provides a set of Drupal blocks containing various representations of an Islandora object:
+
+* a block that contains the Drupal RDF properties in a table (currently only show first of multivalued properties) as illustrated below
+* a block listing the media associated with the object (same contents as th "Media" tab)
+* a block listing Fedora's Turtle Linked Data representation of the resource
+* a block containing the Solr document for the node
+
+This is a sample "Drupal RDF Properties" block:
+
+![sample RDF properties block](docs/rdf_properties.png)
 
 ## Requirements
 
-* [Islandora](https://github.com/Islandora-CLAW/islandora) a.k.a. CLAW
+* [Islandora 8](https://github.com/Islandora-CLAW/islandora)
 
 ## Installation
 
@@ -15,35 +24,17 @@ A first attempt at addressing https://github.com/Islandora-CLAW/CLAW/issues/886.
 
 ## Usage
 
-After you enable this module, a "Whole Islandora Object" tab will appear on Islandora objects, for users with 'administer site configuration' permission. Clicking the link in that tab will provide the RDF properties of the current object, all media linked to the object, Fedora's RDF representation of the object, and the Solr document for the object:
+After you enable this module, some new blocks will show up in your "Block Layout" admin area with the catagory "Islandora":
 
-![overview](docs/overview.png)
+![overview](docs/blocks_list.png)
 
 ## Configuration
 
-The only configuration option provided is what representations you want to include in the 'overview'. By default 'table', 'media', 'fedora', and 'solr' are enabled. If you want to change what is included, visit `admin/config/islandora_whole_object/settings`.
-
-## Other representations
-
-To get a sense of the different ways we might represent the linked data properties of an Islandora object, you can use a simple way to see different represtations of that data. Appending the following to the end of `/node/1/whole_islandora_object` (e.g., `/node/1/whole_islandora_object/table`) will result in different outputs:
-
-* `overview` (or nothing at the end of the URL): show the combination of 'table', 'media', 'fedora', and 'solr' as described below
-* `table` (or nothing at the end of the URL): show the Linked Data properties in a table (currently only show first of multivalued properties) as illustrated above
-* `media`: list the media associated with the object
-* `jsonld`: show the JSON-LD converted to a raw PHP array as illustrated below 
-* `node`: show the basic Drupal node structure as a raw PHP array
-* `fedora`: show Fedora's Turtle Linked Data representation of the resource
-* `solr`: show the Solr document for the node
-
-Here's the raw (PHP array) JSON-LD output (e.g., `http://localhost:8000/node/1/whole_islandora_object/jsonld`):
-
-![JSON-LD](docs/jsonld.png)
+The blocks provided by this module are standard Drupal blocks, so you can configure them as you like. However, since they contain more information than most blocks do, you should place them in wide regions, such as "Content suffix" (if your theme provides that region). You should also display the blocks for Islandora content types, and restrict access to specific roles.
 
 ## To do
 
 * Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting. See issue #1.
-* Add the option of showing the content in a block.
-* Make the content types that we can view Whole Objects for configurable (currently it only shows on nodes of type 'islandora_object').
 
 ## Current maintainer
 

@@ -13,7 +13,7 @@ use Drupal\Core\Block\BlockBase;
  *
  * @Block(
  * id = "islandora_whole_object_properties",
- * admin_label = @Translation("Islandora Whole Object properties block"),
+ * admin_label = @Translation("Drupal RDF properties for this object"),
  * category = @Translation("Islandora"),
  * )
  */

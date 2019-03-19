@@ -13,7 +13,7 @@ use Drupal\Core\Block\BlockBase;
  *
  * @Block(
  * id = "islandora_whole_object_media",
- * admin_label = @Translation("Islandora Whole Object Media block"),
+ * admin_label = @Translation("Media associated with this object"),
  * category = @Translation("Islandora"),
  * )
  */

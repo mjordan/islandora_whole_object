@@ -13,7 +13,7 @@ use Drupal\Core\Block\BlockBase;
  *
  * @Block(
  * id = "islandora_whole_object_fedora",
- * admin_label = @Translation("Islandora Whole Object Fedora block"),
+ * admin_label = @Translation("Fedora RDF (Turtle) for this object"),
  * category = @Translation("Islandora"),
  * )
  */

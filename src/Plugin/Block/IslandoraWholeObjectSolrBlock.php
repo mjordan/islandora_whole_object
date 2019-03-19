@@ -13,7 +13,7 @@ use Drupal\Core\Block\BlockBase;
  *
  * @Block(
  * id = "islandora_whole_object_solr",
- * admin_label = @Translation("Islandora Whole Object Solr document block"),
+ * admin_label = @Translation("Solr document for this object"),
  * category = @Translation("Islandora"),
  * )
  */
