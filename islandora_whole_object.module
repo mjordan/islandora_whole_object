@@ -7,18 +7,15 @@ use Drupal\views\ViewExecutable;
 */
 function islandora_whole_object_theme($existing, $type, $theme, $path) {
   return [
-    'islandora_whole_object_content' => [
-      'variables' => ['format' => NULL, 'whole_object' => NULL, 'heading' => NULL],
+    'islandora_whole_object_block_pre' => [
+      'variables' => ['content' => NULL],
     ],
-  ];
-}
-
-/**
-* Default preprocessor function for the islandora_whole_object theme hook.
-*/
-function template_preprocess_islandora_whole_object_content(&$variables) {
-  $variables['attributes'] = [
-    'id' => ['islandora_whole_object'],
+    'islandora_whole_object_block_media' => [
+      'variables' => ['content' => NULL],
+    ],
+    'islandora_whole_object_block_properties' => [
+      'variables' => ['content' => NULL],
+    ],
   ];
 }
 
@@ -42,6 +39,8 @@ function islandora_whole_object_page_attachments(array &$attachments) {
 
 /**
  * Implements hook_views_pre_render().
+ *
+ * Note: this doesn't work with the Media block.
  */
 function islandora_whole_object_views_pre_render(ViewExecutable $view) {
   if (\Drupal::routeMatch()->getRouteName() == 'islandora_whole_object.whole_object') {
