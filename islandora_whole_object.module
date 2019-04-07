@@ -22,7 +22,7 @@ function islandora_whole_object_theme($existing, $type, $theme, $path) {
 /**
 * Implements hook_page_attachments().
 */
-function islandora_whole_object_page_attachments(array &$attachments) {
+function _islandora_whole_object_page_attachments(array &$attachments) {
   if (\Drupal::routeMatch()->getRouteName() == 'entity.node.canonical') {
     $current_path = \Drupal::service('path.current')->getPath();
     $path_args = explode('/', $current_path);
