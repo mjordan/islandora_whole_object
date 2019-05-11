@@ -1,5 +1,3 @@
-islandora_whole_object.page:
-  route_name: islandora_whole_object.whole_object
-  base_route: entity.node.canonical
-  title: 'Whole Islandora object'
+islandora_whole_object:
+  deriver: \Drupal\islandora_whole_object\Plugin\Derivative\IslandoraContentTypes
   weight: 100

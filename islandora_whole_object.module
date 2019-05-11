@@ -55,24 +55,25 @@ function islandora_whole_object_views_pre_render(ViewExecutable $view) {
 /**
  * Implements hook_local_tasks_alter().
  */
-function islandora_whole_object_local_tasks_alter(&$local_tasks) {
-  dpm("alter hook fired");
+function _islandora_whole_object_local_tasks_alter(&$local_tasks) {
+  dd("alter hook fired");
   $node = \Drupal::routeMatch()->getParameter('node');
   if ($node instanceof \Drupal\node\NodeInterface) {
     $config = \Drupal::config('islandora_whole_object.settings');
     $types = $config->get('islandora_node_types');
     $node_type = $node->getType();
-    dpm($node_type, 'Node type');
-    dpm(array_values($types), 'Configured types');
-    if (NULL == $config->get('islandora_node_types')) {
-      dpm("node types not configured");
-      unset($local_tasks['islandora_whole_object.page']);
+    dd($node_type, 'Node type');
+    dd(array_values($types), 'Configured types');
+
+    if (!in_array($node_type, array_values($types), TRUE)) {
+      $local_tasks['islandora_whole_object.page'] = [
+        'title' => 'Hi Mark',
+        'base_route' => 'entity.node.canonical',
+        'route_name' => 'islandora_whole_object.whole_object',
+        'class' => LocalTaskDefault::class,
+        'options' => [],
+      ];
     }
-    else {
-      if (!in_array($node_type, array_values($types), TRUE)) {
-        dpm("This node's type not in the list of configured types.");
-        unset($local_tasks['islandora_whole_object.page']);
-      }
-    }
+
   }
 }
