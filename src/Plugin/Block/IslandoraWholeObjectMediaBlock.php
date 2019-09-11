@@ -23,12 +23,14 @@ class IslandoraWholeObjectMediaBlock extends BlockBase {
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
-    $nid = $node->id();
-    $output = views_embed_view('media_of', 'page_1', $nid);
+    if ($node) {
+      $nid = $node->id();
+      $output = views_embed_view('media_of', 'page_1', $nid);
 
-    return array (
-      '#theme' => 'islandora_whole_object_block_media',
-      '#content' => $output,
-    );
+      return array (
+        '#theme' => 'islandora_whole_object_block_media',
+        '#content' => $output,
+      );
+    }
   }
 }

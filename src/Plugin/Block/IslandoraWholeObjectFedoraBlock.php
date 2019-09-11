@@ -25,6 +25,9 @@ class IslandoraWholeObjectFedoraBlock extends BlockBase implements BlockPluginIn
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
+    if (!$node) {
+      return array();
+    }
     $nid = $node->id();
     $drupal_url = 'http://localhost:8000/node/' . $nid . '?_format=json';
     $response = \Drupal::httpClient()->get($drupal_url);

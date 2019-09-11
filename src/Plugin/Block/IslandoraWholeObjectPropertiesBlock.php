@@ -23,6 +23,9 @@ class IslandoraWholeObjectPropertiesBlock extends BlockBase {
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
+    if (!$node) {
+      return array();
+    }
     $nid = $node->id();
 
     $url = 'http://localhost:8000/node/' . $nid . '?_format=jsonld';

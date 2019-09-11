@@ -23,13 +23,15 @@ class IslandoraWholeObjectSolrBlock extends BlockBase {
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
-    $nid = $node->id();
-    $solr_url = 'http://localhost:8983/solr/CLAW/select?q=ss_search_api_id:%22entity:node/' . $nid . ':en%22';
-    $response = \Drupal::httpClient()->get($solr_url);
-    $response_body = (string) $response->getBody();
-    return array (
-      '#theme' => 'islandora_whole_object_block_pre',
-      '#content' => $response_body,
-    );
+    if ($node) {
+      $nid = $node->id();
+      $solr_url = 'http://localhost:8983/solr/CLAW/select?q=ss_search_api_id:%22entity:node/' . $nid . ':en%22';
+      $response = \Drupal::httpClient()->get($solr_url);
+      $response_body = (string) $response->getBody();
+      return array (
+        '#theme' => 'islandora_whole_object_block_pre',
+        '#content' => $response_body,
+      );
+    }
   }
 }
