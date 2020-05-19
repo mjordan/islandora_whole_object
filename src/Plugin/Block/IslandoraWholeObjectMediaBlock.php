@@ -33,4 +33,12 @@ class IslandoraWholeObjectMediaBlock extends BlockBase {
       );
     }
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    return 0;
+  }
+
 }

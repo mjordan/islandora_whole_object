@@ -52,4 +52,12 @@ class IslandoraWholeObjectPropertiesBlock extends BlockBase {
       '#content' => $output,
     );
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    return 0;
+  }
+
 }

@@ -50,6 +50,13 @@ class IslandoraWholeObjectFedoraBlock extends BlockBase implements BlockPluginIn
     );
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    return 0;
+  }
+
    /**
    * {@inheritdoc}
    */

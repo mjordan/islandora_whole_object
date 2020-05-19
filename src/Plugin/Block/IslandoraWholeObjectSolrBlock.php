@@ -34,4 +34,12 @@ class IslandoraWholeObjectSolrBlock extends BlockBase {
       );
     }
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    return 0;
+  }
+
 }
