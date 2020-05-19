@@ -28,12 +28,7 @@ class IslandoraWholeObjectFedoraBlock extends BlockBase implements BlockPluginIn
     if (!$node) {
       return array();
     }
-    $nid = $node->id();
-    $drupal_url = 'http://localhost:8000/node/' . $nid . '?_format=json';
-    $response = \Drupal::httpClient()->get($drupal_url);
-    $response_body = (string) $response->getBody();
-    $body_array = json_decode($response_body, true);
-    $uuid = $body_array['uuid'][0]['value'];
+    $uuid = $node->uuid();
 
     // Assemble the Fedora URL.
     $uuid_parts = explode('-', $uuid);
