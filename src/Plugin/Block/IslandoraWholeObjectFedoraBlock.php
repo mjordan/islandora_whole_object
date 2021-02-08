@@ -9,6 +9,7 @@ namespace Drupal\islandora_whole_object\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Site\Settings;
 
 /**
  * Provides a block showing the Fedora Turtle representation of the object.
@@ -33,8 +34,8 @@ class IslandoraWholeObjectFedoraBlock extends BlockBase implements BlockPluginIn
     // Assemble the Fedora URL.
     $uuid_parts = explode('-', $uuid);
     $subparts = str_split($uuid_parts[0], 2);
-    $config = $this->getConfiguration();
-    $fedora_url = $config['fedora_endpoint'] . implode('/', $subparts) . '/'. $uuid;
+    $settings = Settings::get('flysystem');
+    $fedora_url = $settings['fedora']['config']['root'] . implode('/', $subparts) . '/'. $uuid;
 
     // Get the Turtle from Fedora.
     $client = \Drupal::httpClient();
@@ -57,29 +58,4 @@ class IslandoraWholeObjectFedoraBlock extends BlockBase implements BlockPluginIn
     return 0;
   }
 
-   /**
-   * {@inheritdoc}
-   */
-  public function blockForm($form, FormStateInterface $form_state) {
-    $form = parent::blockForm($form, $form_state);
-    $config = $this->getConfiguration();
-
-    $form['fedora_endpoint'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Fedora endpoint'),
-      '#description' => $this->t('Be sure to include the trailing /, e.g., "http://localhost:8080/fcrepo/rest/".'),
-      '#default_value' => isset($config['fedora_endpoint']) ? $config['fedora_endpoint'] : 'http://localhost:8080/fcrepo/rest/',
-    ];
-
-    return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function blockSubmit($form, FormStateInterface $form_state) {
-    parent::blockSubmit($form, $form_state);
-    $values = $form_state->getValues();
-    $this->configuration['fedora_endpoint'] = $values['fedora_endpoint'];
-  }
 }

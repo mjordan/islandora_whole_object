@@ -22,13 +22,14 @@ class IslandoraWholeObjectPropertiesBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
+    global $base_url;
     $node = \Drupal::routeMatch()->getParameter('node');
     if (!$node) {
       return array();
     }
     $nid = $node->id();
 
-    $url = 'http://localhost:8000/node/' . $nid . '?_format=jsonld';
+    $url = $base_url . '/node/' . $nid . '?_format=jsonld';
     $response = \Drupal::httpClient()->get($url);
     $response_body = (string) $response->getBody();
     $whole_object = json_decode($response_body, true);

@@ -7,6 +7,7 @@
 namespace Drupal\islandora_whole_object\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Solarium\Core\Client\Client;
 
 /**
  * Provides a block showing the Solr representation of the object.
@@ -24,8 +25,15 @@ class IslandoraWholeObjectSolrBlock extends BlockBase {
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
     if ($node) {
+      $solr_config = \Drupal::config('search_api.server.default_solr_server');
+      $solr_configs = $solr_config->get();
+      $host = $solr_configs['backend_config']['connector_config']['host'];
+      $port = $solr_configs['backend_config']['connector_config']['port'];
+      $core = $solr_configs['backend_config']['connector_config']['core'];
+      $scheme = $solr_configs['backend_config']['connector_config']['scheme'];
+
       $nid = $node->id();
-      $solr_url = 'http://localhost:8983/solr/ISLANDORA/select?q=ss_search_api_id:%22entity:node/' . $nid . ':en%22';
+      $solr_url = $scheme . '://' . $host . ':' . $port . '/solr/' . $core . '/select?q=ss_search_api_id:%22entity:node/' . $nid . ':en%22';
       $response = \Drupal::httpClient()->get($solr_url);
       $response_body = (string) $response->getBody();
       return array (
