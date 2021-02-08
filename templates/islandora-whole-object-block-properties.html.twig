@@ -11,10 +11,10 @@
 #}
   <div class="islandora_whole_object_content">
     <table>
-    <th>Property</th><th>Value</th><th>Type</th><th>Language</th>
+    <th>Property</th><th>Value</th><th>Type</th><th>ID</th><th>Language</th>
     {% for property in content %}
       <tr>
-      <td>{{ property.0 }}</td><td>{{ property.1 }}</td><td>{{ property.2 }}</td><td>{{ property.3 }}</td>
+      <td>{{ property.0 }}</td><td>{{ property.1 }}</td><td>{{ property.2 }}</td><td>{{ property.3 }}</td><td>{{ property.4 }}</td>
       </tr>
     {% endfor %}
     </table>

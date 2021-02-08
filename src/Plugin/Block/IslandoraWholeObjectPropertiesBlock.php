@@ -57,6 +57,12 @@ class IslandoraWholeObjectPropertiesBlock extends BlockBase {
 	  else {
             $row[] = '';
 	  }
+          if (array_key_exists('@id', $value[0])) {
+            $row[] = $value[0]['@id'];
+	  }
+	  else {
+            $row[] = '';
+	  }
           if (array_key_exists('@language', $value[0])) {
             $row[] = $value[0]['@language'];
 	  }
