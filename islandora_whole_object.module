@@ -20,24 +20,6 @@ function islandora_whole_object_theme($existing, $type, $theme, $path) {
 }
 
 /**
-* Implements hook_page_attachments().
-*/
-function _islandora_whole_object_page_attachments(array &$attachments) {
-  if (\Drupal::routeMatch()->getRouteName() == 'entity.node.canonical') {
-    $current_path = \Drupal::service('path.current')->getPath();
-    $path_args = explode('/', $current_path);
-    if ($path_args[4] == 'jsonldvisualized') {
-      $node = \Drupal::routeMatch()->getParameter('node');
-      $nid = $node->id();
-      $attachments['#attached']['library'][] = 'islandora_whole_object/islandora_whole_object';
-      // See https://github.com/mjordan/islandora_whole_object/issues/1.
-      // $attachments['#attached']['library'][] = 'islandora_whole_object/jsonld-vis';
-      $attachments['#attached']['drupalSettings']['islandora_whole_object']['nid'] = $nid;
-    }
-  }
-}
-
-/**
  * Implements hook_views_pre_render().
  */
 function islandora_whole_object_views_pre_render(ViewExecutable $view) {

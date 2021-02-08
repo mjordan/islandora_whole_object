@@ -36,10 +36,6 @@ The blocks provided by this module are standard Drupal blocks, so you can config
 * configure the blocks so they display only for Islandora content types
 * configure the blocks so they display only for specific roles
 
-## To do
-
-* Outputing the JSON-LD using https://github.com/scienceai/jsonld-vis would be interesting. See issue #1.
-
 ## Current maintainer
 
 * [Mark Jordan](https://github.com/mjordan)

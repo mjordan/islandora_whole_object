@@ -41,9 +41,29 @@ class IslandoraWholeObjectPropertiesBlock extends BlockBase {
         if ($property == 'http://schema.org/author') {
           $output[] = array($property, $value[0]['@id']);
         }
-        else {
-          // @todo: Check for the presence of @type and @language.
-          $output[] = array($property, $value[0]['@value'], $value[0]['@type'], $value[0]['@language']);
+	else {
+	  $row = [];
+          // $output[] = array($property, $value[0]['@value'], $value[0]['@type'], $value[0]['@language']);
+          $row[] = $property;
+          if (array_key_exists('@value', $value[0])) {
+            $row[] = $value[0]['@value'];
+	  }
+	  else {
+            $row[] = '';
+	  }
+          if (array_key_exists('@type', $value[0])) {
+            $row[] = $value[0]['@type'];
+	  }
+	  else {
+            $row[] = '';
+	  }
+          if (array_key_exists('@language', $value[0])) {
+            $row[] = $value[0]['@language'];
+	  }
+	  else {
+            $row[] = '';
+	  }
+	  $output[] = $row;
         }
       }
     }
