@@ -13,7 +13,7 @@ use Drupal\Core\Block\BlockBase;
  *
  * @Block(
  * id = "islandora_whole_object_properties",
- * admin_label = @Translation("Drupal RDF properties for this object"),
+ * admin_label = @Translation("Drupal RDF (JSON-LD) properties for this object"),
  * category = @Translation("Islandora"),
  * )
  */
@@ -34,42 +34,53 @@ class IslandoraWholeObjectPropertiesBlock extends BlockBase {
     $response_body = (string) $response->getBody();
     $whole_object = json_decode($response_body, true);
 
-    $properties_to_skip = array('@id', '@type');
+    $properties_to_skip = array();
     foreach ($whole_object['@graph'][0] as $property => $value) {
       if (!in_array($property, $properties_to_skip)) {
-        // Note: For now, we only pick out the first of multivalued properties.
+        if ($property == '@id') {
+          $output[] = array('@id', $value, '', '');
+          continue;
+        }
+        if ($property == '@type') {
+          foreach ($value as $type) {
+            $output[] = array('@type', $type, '', '');
+	  }
+          continue;
+        }
         if ($property == 'http://schema.org/author') {
-          $output[] = array($property, $value[0]['@id']);
+          $output[] = array($property, '', '', $value[0]['@id']);
         }
 	else {
-	  $row = [];
-          // $output[] = array($property, $value[0]['@value'], $value[0]['@type'], $value[0]['@language']);
-          $row[] = $property;
-          if (array_key_exists('@value', $value[0])) {
-            $row[] = $value[0]['@value'];
+	  // All other properties.
+          foreach ($value as $v) {
+	    $row = [];
+            $row[] = $property;
+            if (array_key_exists('@value', $value[0])) {
+              $row[] = $v['@value'];
+	    }
+	    else {
+              $row[] = '';
+	    }
+            if (array_key_exists('@type', $value[0])) {
+              $row[] = $v['@type'];
+	    }
+	    else {
+              $row[] = '';
+	    }
+            if (array_key_exists('@id', $value[0])) {
+              $row[] = $v['@id'];
+	    }
+	    else {
+              $row[] = '';
+	    }
+            if (array_key_exists('@language', $value[0])) {
+              $row[] = $v['@language'];
+	    }
+	    else {
+              $row[] = '';
+	    }
+	    $output[] = $row;
 	  }
-	  else {
-            $row[] = '';
-	  }
-          if (array_key_exists('@type', $value[0])) {
-            $row[] = $value[0]['@type'];
-	  }
-	  else {
-            $row[] = '';
-	  }
-          if (array_key_exists('@id', $value[0])) {
-            $row[] = $value[0]['@id'];
-	  }
-	  else {
-            $row[] = '';
-	  }
-          if (array_key_exists('@language', $value[0])) {
-            $row[] = $value[0]['@language'];
-	  }
-	  else {
-            $row[] = '';
-	  }
-	  $output[] = $row;
         }
       }
     }
