@@ -15,7 +15,7 @@ use Drupal\Core\Url;
  *
  * @Block(
  * id = "islandora_whole_object_hierarchy",
- * admin_label = @Translation("Current object's parents and children"),
+ * admin_label = @Translation("Current object's children"),
  * category = @Translation("Islandora"),
  * )
  */

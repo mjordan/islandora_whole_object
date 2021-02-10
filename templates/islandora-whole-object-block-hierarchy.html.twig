@@ -15,36 +15,33 @@
 
   <div class="islandora_whole_object_content">
 
-<div class="tf-tree">
-  <ul>
+        <div class="tf-tree">
+          <ul>
+            <li>
+              <span class="tf-nc"><a href="/node/{{ node.nid }}">{{ node.label }}</a></span>
+                {% set num_children = children|length %}
+                {% if num_children <= 4 %}
+                  {% set max_children = num_children %}
+                {% else %}
+                  {% set max_children = 4 %}
+                {% endif %}
+                <ul>
+                {% for child in children|slice(0,max_children) %}
+                  <li><span class="tf-nc"><a href="/node/{{ child.nid }}">{{ child.label }}</a></span></li>
+                {% endfor %}
 
-    {% if parents|length > 0 %}
-       <ul>
-        {% for parent in parents %}
-          <li><span class="tf-nc"><a href="/node/{{ parent.nid }}">{{ parent.label }}</a></span></li>
-        {% endfor %}
-      {% endif %}
+                {% if num_children == 0 %}
+                  <li><span class="tf-nc">No children</span></li>
+                {% endif %}
 
-    <li>
-      <span class="tf-nc" style="background-color:#80ff00;"><a href="/node/{{ node.nid }}">{{ node.label }}</a></span>
-      {% if children|length > 0 %}
-      <ul>
-        {% for child in children %}
-          <li><span class="tf-nc"><a href="/node/{{ child.nid }}">{{ child.label }}</a></span></li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-    </li>
-  </ul>
+                {% if num_children >= 5 %}
+                  {% set additional_children = num_children - 4 %}
+                  <li><span class="tf-nc">And {{ additional_children }} <a href="/node/{{ node.nid }}/members">more</a> children</span></li>
+                {% endif %}
 
-    {% if parents|length > 0 %}
-    </ul>
-      {% endif %}
-</div>
-
+                </ul>
+            </li>
+          </ul>
+        </div>
 
   </div>
-
-
-
-
