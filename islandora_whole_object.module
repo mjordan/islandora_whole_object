@@ -16,6 +16,13 @@ function islandora_whole_object_theme($existing, $type, $theme, $path) {
     'islandora_whole_object_block_properties' => [
       'variables' => ['content' => NULL],
     ],
+    'islandora_whole_object_block_hierarchy' => [
+       'variables' => [
+         'node' => NULL,
+         'children' => NULL,
+         'parents' => NULL,
+      ],
+    ],
   ];
 }
 

@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Template for Islandora Whole Object's Hierarchy block.
+ *
+ * Available variables:
+ * - node: The link to the current node.
+ * - children: Array of links to the current node's children.
+ * - parents: Array of links to the current node's parents.
+ *
+ * @ingroup themeable
+ */
+#}
+  {{ attach_library('islandora_whole_object/treeflex') }}
+
+  <div class="islandora_whole_object_content">
+
+<div class="tf-tree">
+  <ul>
+
+    {% if parents|length > 0 %}
+       <ul>
+        {% for parent in parents %}
+          <li><span class="tf-nc"><a href="/node/{{ parent.nid }}">{{ parent.label }}</a></span></li>
+        {% endfor %}
+      {% endif %}
+
+    <li>
+      <span class="tf-nc" style="background-color:#80ff00;"><a href="/node/{{ node.nid }}">{{ node.label }}</a></span>
+      {% if children|length > 0 %}
+      <ul>
+        {% for child in children %}
+          <li><span class="tf-nc"><a href="/node/{{ child.nid }}">{{ child.label }}</a></span></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </li>
+  </ul>
+
+    {% if parents|length > 0 %}
+    </ul>
+      {% endif %}
+</div>
+
+
+  </div>
+
+
+
+

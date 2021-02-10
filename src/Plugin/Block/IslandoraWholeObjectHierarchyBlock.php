@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ */
+
+namespace Drupal\islandora_whole_object\Plugin\Block;
+
+use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+
+/**
+ * Provides a block showing the properties of the object.
+ *
+ * @Block(
+ * id = "islandora_whole_object_hierarchy",
+ * admin_label = @Translation("Current object's parents and children"),
+ * category = @Translation("Islandora"),
+ * )
+ */
+class IslandoraWholeObjectHierarchyBlock extends BlockBase {
+  /**
+   * {@inheritdoc}
+   */
+  public function build() {
+    global $base_url;
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if (!$node) {
+      return array();
+    }
+    $nid = $node->id();
+    if ($node) {
+
+      // Get parents.
+      $output_parents = [];
+      $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);;
+      $parents = $node->field_member_of->referencedEntities();
+      foreach ($parents as $parent) {
+	$output_parents[] = ['nid' => $parent->id(), 'label' => $parent->label()];
+      }
+
+      // Get children.
+      $entity = \Drupal::entityTypeManager()->getStorage('node');
+      $query = $entity->getQuery();
+      // @todo: add a limit, e.g. 20.
+      $children_nids = $query->condition('field_member_of', $nid, '=')
+        ->execute();
+
+      $output_children = [];
+      foreach ($children_nids as $child_nid) {
+        $child = \Drupal::entityTypeManager()->getStorage('node')->load($child_nid);
+        $output_children[] = ['nid' => $child_nid, 'label' => $child->label()];
+      }
+
+      $output_node = ['label' => $node->label(), 'nid' => $nid];
+
+      return array (
+        '#theme' => 'islandora_whole_object_block_hierarchy',
+        '#parents' => $output_parents,
+        '#children' => $output_children,
+        '#node' => $output_node,
+      );
+    } 
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    return 0;
+  }
+
+}

@@ -1,0 +1,5 @@
+treeflex:
+  version: 1.x
+  css:
+    theme:
+      https://unpkg.com/treeflex/dist/css/treeflex.css: { type: external, minified: true }
