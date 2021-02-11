@@ -6,7 +6,7 @@
  * Available variables:
  * - node: The link to the current node.
  * - children: Array of links to the current node's children.
- * - total_children: Number of children the current node has ('children' contains only the first 4).
+ * - total_children: Number of children the current node has ('children' contains only the first 5).
  * - parents: Array of links to the current node's parents.
  *
  * @ingroup themeable
@@ -18,11 +18,11 @@
         <div class="tf-tree">
           <ul>
             <li>
-              <span class="tf-nc"><a href="/node/{{ node.nid }}">{{ node.label }}</a></span>
-                {% if total_children <= 4 %}
+              <span class="tf-nc">{{ node.label }}</span>
+                {% if total_children <= 5 %}
                   {% set max_children = total_children %}
                 {% else %}
-                  {% set max_children = 4 %}
+                  {% set max_children = 5 %}
                 {% endif %}
 
                 <ul>
@@ -34,8 +34,8 @@
                   <li><span class="tf-nc">No children</span></li>
                 {% endif %}
 
-                {% if total_children >= 4 %}
-                  {% set additional_children = total_children - 4 %}
+                {% if total_children >= 5 %}
+                  {% set additional_children = total_children - 5 %}
                   <li><span class="tf-nc">And {{ additional_children }} <a href="/node/{{ node.nid }}/members">more</a> children</span></li>
                 {% endif %}
 
