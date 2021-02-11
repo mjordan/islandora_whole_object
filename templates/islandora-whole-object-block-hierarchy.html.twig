@@ -31,10 +31,10 @@
                 {% endfor %}
 
                 {% if total_children == 0 %}
-                  <li><span class="tf-nc">No children</span></li>
+                  <li><span class="tf-nc" style="font-style: italic;">No children</span></li>
                 {% endif %}
 
-                {% if total_children >= 5 %}
+                {% if total_children > 5 %}
                   {% set additional_children = total_children - 5 %}
                   <li><span class="tf-nc">And {{ additional_children }} <a href="/node/{{ node.nid }}/members">more</a> children</span></li>
                 {% endif %}
