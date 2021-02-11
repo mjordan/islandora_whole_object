@@ -18,7 +18,18 @@
         <div class="tf-tree">
           <ul>
             <li>
-              <span class="tf-nc">{{ node.label }}</span>
+              {% if parents|length == 0 %}
+                <span class="tf-nc" style="font-style: italic;">No parent</span>
+              {% else %}
+                <span class="tf-nc">
+                  {% for parent in parents %}
+                    <a href="/node/{{ parent.nid }}">{{ parent.label }}</a><span> </span> 
+                  {% endfor %}
+                </span>
+              {% endif %}
+            <ul>
+            <li>
+              <span class="tf-nc" style="font-weight: bold;">{{ node.label }}</span>
                 {% if total_children <= 5 %}
                   {% set max_children = total_children %}
                 {% else %}
@@ -40,6 +51,8 @@
                 {% endif %}
 
                 </ul>
+                </ul>
+            </li>
             </li>
           </ul>
         </div>
