@@ -20,6 +20,7 @@ function islandora_whole_object_theme($existing, $type, $theme, $path) {
        'variables' => [
          'node' => NULL,
          'children' => NULL,
+         'total_children' => NULL,
          'parents' => NULL,
       ],
     ],

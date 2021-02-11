@@ -6,6 +6,7 @@
  * Available variables:
  * - node: The link to the current node.
  * - children: Array of links to the current node's children.
+ * - total_children: Number of children the current node has ('children' contains only the first 4).
  * - parents: Array of links to the current node's parents.
  *
  * @ingroup themeable
@@ -14,28 +15,27 @@
   {{ attach_library('islandora_whole_object/treeflex') }}
 
   <div class="islandora_whole_object_content">
-
         <div class="tf-tree">
           <ul>
             <li>
               <span class="tf-nc"><a href="/node/{{ node.nid }}">{{ node.label }}</a></span>
-                {% set num_children = children|length %}
-                {% if num_children <= 4 %}
-                  {% set max_children = num_children %}
+                {% if total_children <= 4 %}
+                  {% set max_children = total_children %}
                 {% else %}
                   {% set max_children = 4 %}
                 {% endif %}
+
                 <ul>
-                {% for child in children|slice(0,max_children) %}
+                {% for child in children|slice(0, max_children) %}
                   <li><span class="tf-nc"><a href="/node/{{ child.nid }}">{{ child.label }}</a></span></li>
                 {% endfor %}
 
-                {% if num_children == 0 %}
+                {% if total_children == 0 %}
                   <li><span class="tf-nc">No children</span></li>
                 {% endif %}
 
-                {% if num_children >= 5 %}
-                  {% set additional_children = num_children - 4 %}
+                {% if total_children >= 4 %}
+                  {% set additional_children = total_children - 4 %}
                   <li><span class="tf-nc">And {{ additional_children }} <a href="/node/{{ node.nid }}/members">more</a> children</span></li>
                 {% endif %}
 
@@ -43,5 +43,4 @@
             </li>
           </ul>
         </div>
-
   </div>

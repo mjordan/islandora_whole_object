@@ -43,9 +43,12 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
       // Get children.
       $entity = \Drupal::entityTypeManager()->getStorage('node');
       $query = $entity->getQuery();
-      // @todo: add a limit, e.g. 20.
       $children_nids = $query->condition('field_member_of', $nid, '=')
         ->execute();
+
+      $total_children = count($children_nids);
+      // Trim the list of children to 4 so we don't load every member of a large collection or book, etc.
+      $children_nids = array_slice($children_nids, 0, 4);
 
       $output_children = [];
       foreach ($children_nids as $child_nid) {
@@ -59,6 +62,7 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
         '#theme' => 'islandora_whole_object_block_hierarchy',
         '#parents' => $output_parents,
         '#children' => $output_children,
+        '#total_children' => $total_children,
         '#node' => $output_node,
       );
     } 
