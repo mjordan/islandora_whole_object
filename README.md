@@ -4,9 +4,9 @@
 
 Islandora 8 module that provides some Drupal blocks containing various representations of an Islandora object:
 
-* a block that contains the Drupal RDF properties in a table (currently only show first of multivalued properties) as illustrated below
+* a block that contains the Drupal RDF properties in a table, as illustrated below
 * a block listing Fedora's Turtle Linked Data representation of the resource
-* a block showing an "org chart" of the current object's parent(s) and children
+* a block showing an "org chart" containing the current object's parent(s) and children
 * a block containing the Solr document for the node
 * a block listing the media associated with the object (more or less the same contents as the default "Media" tab)
 
@@ -35,7 +35,7 @@ The blocks provided by this module are standard Drupal blocks, so you can config
 
 * place them in wide regions, such as "Content suffix" (if your theme provides that region)
 * configure the blocks so they display only for Islandora content types
-* configure the blocks so they display only for specific roles
+* configure the blocks so they display only for specific roles (they are not intended for display to anonymous users)
 
 ## Current maintainer
 
