@@ -14,6 +14,15 @@ This is a sample "Drupal RDF Properties" block:
 
 ![sample RDF properties block](docs/rdf_properties.png)
 
+This is a sample "Solr Document" block:
+
+![sample RDF properties block](docs/solr.png)
+
+This is a sample "Parents and Children" block:
+
+![sample RDF properties block](docs/hierarchy.png)
+
+
 ## Requirements
 
 * [Islandora 8](https://github.com/Islandora-CLAW/islandora)
