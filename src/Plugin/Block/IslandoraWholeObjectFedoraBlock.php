@@ -8,7 +8,6 @@ namespace Drupal\islandora_whole_object\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\BlockPluginInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Site\Settings;
 
 /**
