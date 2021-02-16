@@ -9,7 +9,7 @@ Islandora 8 module that provides some Drupal blocks containing various represent
 * a block listing Blazegraph's N-Triples Linked Data representation of the resource
 * a block showing an "org chart" containing the current object's parent(s) and children
 * a block containing the Solr document for the node
-* a block listing the media associated with the object (more or less the same contents as the default "Media" tab)
+* a block listing the files associated with the object (showing different info than the default "Media" tab)
 
 This is a sample "Drupal RDF Properties" block:
 
