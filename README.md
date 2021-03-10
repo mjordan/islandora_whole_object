@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Islandora 8 module that provides some Drupal blocks containing various representations of an Islandora object:
+Islandora 8/9 module that provides some Drupal blocks containing various representations of an Islandora object:
 
 * a block that contains the Drupal RDF properties in a table, as illustrated below
 * a block listing Fedora's Turtle Linked Data representation of the resource
