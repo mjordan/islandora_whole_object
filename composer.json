@@ -1,0 +1,30 @@
+{
+  "name": "mjordan/islandora_whole_object",
+  "description": "Renders various representations (JSON-LD, etc.) of an Islandora object.",
+  "type": "drupal-module",
+  "keywords": ["Drupal", "Islandora"],
+  "homepage": "https://github.com/mjordan/islandora_whole_object",
+  "support": {
+    "issues": "https://github.com/mjordan/islandora_whole_object/issues"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "require": {
+    "drupal/islandora": "^2"
+  },
+  "require-dev": { },
+  "suggest": {
+    "drupal/search_api_solr": "View islandora object in Solr search index"
+  },
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Mark Jordan",
+      "role": "Owner"
+    }
+  ]
+}
