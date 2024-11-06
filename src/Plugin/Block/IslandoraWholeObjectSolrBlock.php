@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @file
- */
-
 namespace Drupal\islandora_whole_object\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
@@ -19,6 +15,7 @@ use Solarium\Core\Client\Client;
  * )
  */
 class IslandoraWholeObjectSolrBlock extends BlockBase {
+
   /**
    * {@inheritdoc}
    */
@@ -34,16 +31,17 @@ class IslandoraWholeObjectSolrBlock extends BlockBase {
 
       $nid = $node->id();
       $solr_url = $scheme . '://' . $host . ':' . $port . '/solr/' . $core . '/select?q=ss_search_api_id:%22entity:node/' . $nid . ':en%22';
-      $response = \Drupal::httpClient()->get($solr_url, ['http_errors' => false]);
+      $response = \Drupal::httpClient()->get($solr_url, ['http_errors' => FALSE]);
       if ($response->getStatusCode() == 404) {
-        $response_output = t('Solr URL @solr_url not found.', array('@solr_url' => $solr_url));
-      } else {
-       $response_body = (string) $response->getBody();
+        $response_body = t('Solr URL @solr_url not found.', ['@solr_url' => $solr_url]);
       }
-      return array (
+      else {
+        $response_body = (string) $response->getBody();
+      }
+      return [
         '#theme' => 'islandora_whole_object_block_pre',
         '#content' => $response_body,
-      );
+      ];
     }
   }
 

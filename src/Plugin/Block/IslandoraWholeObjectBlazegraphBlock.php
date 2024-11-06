@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @file
- */
-
 namespace Drupal\islandora_whole_object\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
@@ -21,13 +17,14 @@ use Drupal\Core\Site\Settings;
  * )
  */
 class IslandoraWholeObjectBlazegraphBlock extends BlockBase implements BlockPluginInterface {
+
   /**
    * {@inheritdoc}
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
     if (!$node) {
-      return array();
+      return [];
     }
 
     global $base_url;
@@ -36,21 +33,22 @@ class IslandoraWholeObjectBlazegraphBlock extends BlockBase implements BlockPlug
 
     // Assemble the Blazegraph URL.
     $config = $this->getConfiguration();
-    $blazegraph_url = $config['blazegraph_endpoint'] . 'namespace/islandora/sparql?query=DESCRIBE%20%3C' . $current_url  . '%3E';
- 
+    $blazegraph_url = $config['blazegraph_endpoint'] . 'namespace/islandora/sparql?query=DESCRIBE%20%3C' . $current_url . '%3E';
+
     // Get the N-Triples from Blazegraph.
     $client = \Drupal::httpClient();
     $headers = ['Accept' => 'text/plain'];
-    $response = $client->request('GET', $blazegraph_url, ['headers' => $headers, 'http_errors' => false]);
+    $response = $client->request('GET', $blazegraph_url, ['headers' => $headers, 'http_errors' => FALSE]);
     if ($response->getStatusCode() == 404) {
-      $response_output = t('Resource @blazegraph_url not found.', array('@blazegraph_url' => $blazegraph_url));
-    } else {
+      $response_output = t('Resource @blazegraph_url not found.', ['@blazegraph_url' => $blazegraph_url]);
+    }
+    else {
       $response_output = (string) $response->getBody();
     }
-    return array (
+    return [
       '#theme' => 'islandora_whole_object_block_pre',
       '#content' => $response_output,
-    );
+    ];
   }
 
   /**
@@ -71,7 +69,7 @@ class IslandoraWholeObjectBlazegraphBlock extends BlockBase implements BlockPlug
       '#type' => 'textfield',
       '#title' => $this->t('Blazegraph endpoint'),
       '#description' => $this->t('Be sure to include the trailing /, e.g., "http://localhost:8080/bigdata/".'),
-      '#default_value' => isset($config['blazegraph_endpoint']) ? $config['blazegraph_endpoint'] : 'http://localhost:8080/bigdata/',
+      '#default_value' => $config['blazegraph_endpoint'] ?? 'http://localhost:8080/bigdata/',
     ];
 
     return $form;
