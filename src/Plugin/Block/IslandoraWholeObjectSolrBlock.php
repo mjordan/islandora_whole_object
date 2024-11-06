@@ -37,10 +37,30 @@ class IslandoraWholeObjectSolrBlock extends BlockBase {
       else {
         $response_body = (string) $response->getBody();
       }
-      return [
+
+      $output = [
         '#theme' => 'islandora_whole_object_block_pre',
         '#content' => $response_body,
       ];
+
+      // If highlighter is available, use it to improve Solr json display.
+      if (\Drupal::service('module_handler')->moduleExists('highlight_js')) {
+        $output['#attached'] = [
+          'library' => [
+            'highlight_js/highlight_js.js',
+            'highlight_js/highlight_js.custom',
+            'highlight_js/highlight_js.style-atom-one-light',
+          ],
+          'drupalSettings' => [
+            'button_data' => [
+              'copy_enable' => TRUE,
+              'copy_btn_text' => 'Copy',
+            ],
+          ]
+        ];
+      }
+
+      return $output;
     }
   }
 
