@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Renders various representations (JSON-LD, etc.) of an Islandora object.
+ */
+
 use Drupal\views\ViewExecutable;
 
 /**
-* Implements hook_theme().
-*/
+ * Implements hook_theme().
+ */
 function islandora_whole_object_theme($existing, $type, $theme, $path) {
   return [
     'islandora_whole_object_block_pre' => [
@@ -17,11 +22,11 @@ function islandora_whole_object_theme($existing, $type, $theme, $path) {
       'variables' => ['content' => NULL],
     ],
     'islandora_whole_object_block_hierarchy' => [
-       'variables' => [
-         'node' => NULL,
-         'children' => NULL,
-         'total_children' => NULL,
-         'parents' => NULL,
+      'variables' => [
+        'node' => NULL,
+        'children' => NULL,
+        'total_children' => NULL,
+        'parents' => NULL,
       ],
     ],
   ];

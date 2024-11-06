@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @file
- */
-
 namespace Drupal\islandora_whole_object\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
@@ -18,6 +14,7 @@ use Drupal\Core\Block\BlockBase;
  * )
  */
 class IslandoraWholeObjectHierarchyBlock extends BlockBase {
+
   /**
    * {@inheritdoc}
    */
@@ -25,7 +22,7 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
     global $base_url;
     $node = \Drupal::routeMatch()->getParameter('node');
     if (!$node) {
-      return array();
+      return [];
     }
     $nid = $node->id();
     if ($node) {
@@ -33,10 +30,11 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
 
       // Get parents.
       $output_parents = [];
-      $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);;
+      $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+      ;
       $parents = $node->field_member_of->referencedEntities();
       foreach ($parents as $parent) {
-	$output_parents[] = ['nid' => $parent->id(), 'label' => $parent->label()];
+        $output_parents[] = ['nid' => $parent->id(), 'label' => $parent->label()];
       }
 
       // Get children, sorted by field_weight.
@@ -56,14 +54,14 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
         $output_children[] = ['nid' => $child_nid, 'label' => $child->label()];
       }
 
-      return array (
+      return [
         '#theme' => 'islandora_whole_object_block_hierarchy',
         '#parents' => $output_parents,
         '#children' => $output_children,
         '#total_children' => $total_children,
         '#node' => $output_node,
-      );
-    } 
+      ];
+    }
   }
 
   /**

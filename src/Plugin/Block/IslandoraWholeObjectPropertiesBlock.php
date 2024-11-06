@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @file
- */
-
 namespace Drupal\islandora_whole_object\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
@@ -18,6 +14,7 @@ use Drupal\Core\Block\BlockBase;
  * )
  */
 class IslandoraWholeObjectPropertiesBlock extends BlockBase {
+
   /**
    * {@inheritdoc}
    */
@@ -25,70 +22,70 @@ class IslandoraWholeObjectPropertiesBlock extends BlockBase {
     global $base_url;
     $node = \Drupal::routeMatch()->getParameter('node');
     if (!$node) {
-      return array();
+      return [];
     }
     $nid = $node->id();
 
     $url = $base_url . '/node/' . $nid . '?_format=jsonld';
     $response = \Drupal::httpClient()->get($url);
     $response_body = (string) $response->getBody();
-    $whole_object = json_decode($response_body, true);
+    $whole_object = json_decode($response_body, TRUE);
 
-    $properties_to_skip = array();
+    $properties_to_skip = [];
     foreach ($whole_object['@graph'][0] as $property => $value) {
       if (!in_array($property, $properties_to_skip)) {
         if ($property == '@id') {
-          $output[] = array('@id', $value, '', '');
+          $output[] = ['@id', $value, '', ''];
           continue;
         }
         if ($property == '@type') {
           foreach ($value as $type) {
-            $output[] = array('@type', $type, '', '');
-	  }
+            $output[] = ['@type', $type, '', ''];
+          }
           continue;
         }
         if ($property == 'http://schema.org/author') {
-          $output[] = array($property, '', '', $value[0]['@id']);
+          $output[] = [$property, '', '', $value[0]['@id']];
         }
-	else {
-	  // All other properties.
+        else {
+          // All other properties.
           foreach ($value as $v) {
-	    $row = [];
+            $row = [];
             $row[] = $property;
             if (array_key_exists('@value', $value[0])) {
               $row[] = $v['@value'];
-	    }
-	    else {
+            }
+            else {
               $row[] = '';
-	    }
+            }
             if (array_key_exists('@type', $value[0])) {
               $row[] = $v['@type'];
-	    }
-	    else {
+            }
+            else {
               $row[] = '';
-	    }
+            }
             if (array_key_exists('@id', $value[0])) {
               $row[] = $v['@id'];
-	    }
-	    else {
+            }
+            else {
               $row[] = '';
-	    }
+            }
             if (array_key_exists('@language', $value[0])) {
               $row[] = $v['@language'];
-	    }
-	    else {
+            }
+            else {
               $row[] = '';
-	    }
-	    $output[] = $row;
-	  }
+            }
+            $output[] = $row;
+          }
         }
       }
     }
 
-    return array (
+    return [
       '#theme' => 'islandora_whole_object_block_properties',
       '#content' => $output,
-    );
+    ];
   }
 
   /**

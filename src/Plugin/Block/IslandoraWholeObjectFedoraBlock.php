@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @file
- */
-
 namespace Drupal\islandora_whole_object\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
@@ -20,13 +16,14 @@ use Drupal\Core\Site\Settings;
  * )
  */
 class IslandoraWholeObjectFedoraBlock extends BlockBase implements BlockPluginInterface {
+
   /**
    * {@inheritdoc}
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
     if (!$node) {
-      return array();
+      return [];
     }
     $uuid = $node->uuid();
 
@@ -34,20 +31,21 @@ class IslandoraWholeObjectFedoraBlock extends BlockBase implements BlockPluginIn
     $uuid_parts = explode('-', $uuid);
     $subparts = str_split($uuid_parts[0], 2);
     $settings = Settings::get('flysystem');
-    $fedora_url = $settings['fedora']['config']['root'] . implode('/', $subparts) . '/'. $uuid;
+    $fedora_url = $settings['fedora']['config']['root'] . implode('/', $subparts) . '/' . $uuid;
 
     // Get the Turtle from Fedora.
     $client = \Drupal::httpClient();
-    $response = $client->request('GET', $fedora_url, ['http_errors' => false]);
+    $response = $client->request('GET', $fedora_url, ['http_errors' => FALSE]);
     if ($response->getStatusCode() == 404) {
-      $response_output = t('Resource @fedora_url not found.', array('@fedora_url' => $fedora_url));
-    } else {
+      $response_output = t('Resource @fedora_url not found.', ['@fedora_url' => $fedora_url]);
+    }
+    else {
       $response_output = (string) $response->getBody();
     }
-    return array (
+    return [
       '#theme' => 'islandora_whole_object_block_pre',
       '#content' => $response_output,
-    );
+    ];
   }
 
   /**
