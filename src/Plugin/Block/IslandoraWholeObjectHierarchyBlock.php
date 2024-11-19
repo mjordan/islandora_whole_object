@@ -24,14 +24,14 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
     if (!$node) {
       return [];
     }
-    $nid = $node->id();
+
     if ($node) {
-      $output_node = ['label' => $node->label(), 'nid' => $nid];
+      $output_node = ['label' => $node->label(), 'nid' => $node->id()];
 
       // Get parents.
       $output_parents = [];
-      $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
-      ;
+      $node = \Drupal::entityTypeManager()->getStorage('node')->load($node->id());
+
       $parents = $node->field_member_of->referencedEntities();
       foreach ($parents as $parent) {
         $output_parents[] = ['nid' => $parent->id(), 'label' => $parent->label()];
@@ -40,8 +40,9 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
       // Get children, sorted by field_weight.
       $entity = \Drupal::entityTypeManager()->getStorage('node');
       $query = $entity->getQuery();
-      $children_nids = $query->condition('field_member_of', $nid, '=')
+      $children_nids = $query->condition('field_member_of', $node->id(), '=')
         ->sort('field_weight', 'ASC')
+        ->accessCheck(TRUE)
         ->execute();
 
       $total_children = count($children_nids);
@@ -60,15 +61,11 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
         '#children' => $output_children,
         '#total_children' => $total_children,
         '#node' => $output_node,
+        '#cache' => [
+          '#tags' => ['node:' . $node->id()],
+        ]
       ];
     }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCacheMaxAge() {
-    return 0;
   }
 
 }
