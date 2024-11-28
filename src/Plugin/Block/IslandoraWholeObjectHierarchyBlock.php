@@ -8,9 +8,15 @@ use Drupal\Core\Block\BlockBase;
  * Provides a block showing the properties of the object.
  *
  * @Block(
- * id = "islandora_whole_object_hierarchy",
- * admin_label = @Translation("Current object's parents and children"),
- * category = @Translation("Islandora"),
+ *   id = "islandora_whole_object_hierarchy",
+ *   admin_label = @Translation("Current object's parents and children"),
+ *   category = @Translation("Islandora"),
+ *   context_definitions = {
+ *      "node" = @ContextDefinition(
+ *        "entity:node",
+ *        label = @Translation("Current Node")
+ *      )
+ *   }
  * )
  */
 class IslandoraWholeObjectHierarchyBlock extends BlockBase {
@@ -55,6 +61,11 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
         $output_children[] = ['nid' => $child_nid, 'label' => $child->label()];
       }
 
+      $cache_tags = array_merge([$node->id()], array_column($output_parents, 'nid'), array_column($children_nids, 'nid'));
+      array_walk($cache_tags, function(&$item, $nid){
+        $item = 'node:' . $item;
+      });
+
       return [
         '#theme' => 'islandora_whole_object_block_hierarchy',
         '#parents' => $output_parents,
@@ -62,7 +73,7 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
         '#total_children' => $total_children,
         '#node' => $output_node,
         '#cache' => [
-          '#tags' => ['node:' . $node->id()],
+          '#tags' => $cache_tags,
         ]
       ];
     }
