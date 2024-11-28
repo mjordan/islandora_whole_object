@@ -12,10 +12,10 @@ use Drupal\Core\Block\BlockBase;
  *   admin_label = @Translation("Current object's parents and children"),
  *   category = @Translation("Islandora"),
  *   context_definitions = {
- *      "node" = @ContextDefinition(
- *        "entity:node",
- *        label = @Translation("Current Node")
- *      )
+ *     "node" = @ContextDefinition(
+ *       "entity:node",
+ *       label = @Translation("Current node")
+ *     )
  *   }
  * )
  */
@@ -25,8 +25,7 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    global $base_url;
-    $node = \Drupal::routeMatch()->getParameter('node');
+    $node = $this->getContextValue('node');
     if (!$node) {
       return [];
     }
@@ -62,7 +61,7 @@ class IslandoraWholeObjectHierarchyBlock extends BlockBase {
       }
 
       $cache_tags = array_merge([$node->id()], array_column($output_parents, 'nid'), array_column($children_nids, 'nid'));
-      array_walk($cache_tags, function(&$item, $nid){
+      array_walk($cache_tags, function(&$item){
         $item = 'node:' . $item;
       });
 
