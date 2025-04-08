@@ -25,6 +25,7 @@ class IslandoraWholeObjectMediaBlock extends BlockBase {
       $entity = \Drupal::entityTypeManager()->getStorage('media');
       $query = $entity->getQuery();
       $mids = $query->condition('field_media_of', $node->id(), '=')
+        ->accessCheck(TRUE)
         ->execute();
 
       $output = [];
